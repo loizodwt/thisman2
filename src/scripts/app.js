@@ -84,3 +84,65 @@ sizeSlider.addEventListener('input', updateSize);
 
 eraserCheckbox.addEventListener('change', updateEraser);
 
+
+/////CHATBOX
+
+
+document.getElementById('message-form').addEventListener('submit', function(event) {
+    event.preventDefault();
+    var username = document.getElementById('username').value;
+    var message = document.getElementById('user-message').value;
+    if (username && message) {
+      addMessage(username, message);
+      document.getElementById('username').value = '';
+      document.getElementById('user-message').value = '';
+    } else {
+      alert('Veuillez saisir votre pseudo et votre message.');
+    }
+  });
+  
+  function addMessage(username, message) {
+    var chatDiv = document.querySelector('.chat');
+    var messageDiv = document.createElement('div');
+    messageDiv.textContent = username + ': ' + message;
+    messageDiv.classList.add('message', 'sent');
+    chatDiv.insertBefore(messageDiv, chatDiv.firstChild);
+  }
+  
+
+
+
+
+
+
+
+
+
+
+
+/////pseudooooo
+
+
+/*
+
+
+
+document.addEventListener('DOMContentLoaded', function() {
+ 
+  // Charger le pseudo enregistré lorsque la page est chargée
+  var pseudoEnregistre = localStorage.getItem("pseudo");
+  if (pseudoEnregistre) {
+    document.getElementById("pseudoAffiche").innerText = pseudoEnregistre;
+  }
+});
+
+document.querySelector('.bouton__enregistrer').addEventListener('click', function () {
+    sauvegarderPseudo();
+})
+
+function sauvegarderPseudo() {
+    var pseudo = document.getElementById("pseudoInput").value;
+    localStorage.setItem("pseudo", pseudo);
+    document.getElementById("pseudoAffiche").innerText = pseudo;
+  }
+*/
