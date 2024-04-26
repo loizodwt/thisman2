@@ -7,7 +7,7 @@ const sizeSlider = document.getElementById('sizeSlider');
 const eraserCheckbox = document.getElementById('eraserCheckbox');
 
 
-canvas.width = 400; // Remplacez 800 par la largeur souhaitée en pixels
+canvas.width = 400; 
 canvas.height = 400;
 
 let isDrawing = false;
@@ -42,46 +42,45 @@ function draw(e) {
   lastY = y;
 }
 
-// Функція для зупинки малювання
+
 function stopDrawing() {
   isDrawing = false;
 }
 
-// Очистка полотна
+
 function clearCanvas() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 }
 
-// Оновлення кольору пензля
+
 function updateColor() {
   strokeColor = colorPicker.value;
 }
 
-// Оновлення розміру пензля
+
 function updateSize() {
   strokeWidth = sizeSlider.value;
 }
 
-// Оновлення стану гумки
+
 function updateEraser() {
   isEraserEnabled = eraserCheckbox.checked;
 }
 
-// Додаємо обробники подій для малювання
+
 canvas.addEventListener('mousedown', startDrawing);
 canvas.addEventListener('mousemove', draw);
 canvas.addEventListener('mouseup', stopDrawing);
 canvas.addEventListener('mouseout', stopDrawing);
 
-// Додаємо обробник події для кнопки очищення
 clearBtn.addEventListener('click', clearCanvas);
 
-// Додаємо обробник події для вибору кольору
+
 colorPicker.addEventListener('change', updateColor);
 
-// Додаємо обробник події для зміни розміру
+
 sizeSlider.addEventListener('input', updateSize);
 
-// Додаємо обробник події для вибору гумки
+
 eraserCheckbox.addEventListener('change', updateEraser);
 
