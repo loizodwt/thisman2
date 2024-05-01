@@ -16,7 +16,7 @@ body {
   &__image {
     display: block;
     margin: 0 auto; /* Pour centrer l'image horizontalement */
-    max-width: 160%; /* Assurez-vous que l'image ne dépasse pas la largeur de la carte */
+    max-width: 120%; /* Assurez-vous que l'image ne dépasse pas la largeur de la carte */
   }
 
   &__caption {
@@ -114,3 +114,23 @@ body {
   }
   
  
+
+
+
+
+
+
+  
+
+
+
+  .section2-investigation__title {
+    background-color: #E9F1FC;
+    padding: 10px;
+    border: 1px solid black;
+}
+
+
+.section2-investigation__paragraph .highlight {
+  font-weight: bold;
+}
