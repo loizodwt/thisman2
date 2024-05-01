@@ -175,3 +175,22 @@ body {
 
   }
 }
+
+
+
+
+.section2-investigation__time {
+  display: flex; /* Utilise flexbox pour aligner les éléments en ligne */
+}
+
+.section2-investigation__text {
+  flex: 1; /* Permet au texte de prendre autant d'espace que possible */
+}
+
+.section2-investigation__image {
+  margin-left: 20px; /* Ajoute une marge à gauche pour séparer l'image du texte */
+}
+
+.section2-investigation__image img {
+  max-width: 100%; /* Assurez-vous que l'image ne dépasse pas la largeur de son conteneur */
+}
