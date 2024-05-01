@@ -137,3 +137,33 @@ body {
 .section2-investigation__paragraph .highlight {
   font-weight: bold;
 }
+
+
+
+
+
+
+/* CSS pour les écrans de bureau */
+@media screen and (min-width: 1024px) {
+  .section1 {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Divise l'écran en deux colonnes de largeur égale */
+    gap: 20px; /* Espacement entre les éléments */
+  }
+
+  .section1-content {
+    grid-column: 1 / 2; /* Occupe la première colonne */
+  }
+
+  .section1-description {
+    grid-column: 2 / 3; /* Occupe la deuxième colonne */
+  }
+
+  .section1-card {
+    grid-column: 2 / 3; /* Occupe la deuxième colonne */
+  }
+  
+  .section1-end {
+    grid-column: 1 / 2; /* Occupe la première colonne */
+  }
+}
