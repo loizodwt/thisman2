@@ -1,8 +1,9 @@
+
+
 .nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    position: relative;
     border-bottom: solid 1px rgb(0, 0, 0);
     font-size: 28px; 
 }
@@ -15,37 +16,12 @@
 
 .nav__list {
     list-style: none;
-    gap: 5px;
+    gap: 10px;
     display: flex;
-    margin-right: 20px;
-}
-
-.nav__item {
-    position: relative;
-
-    &:hover .nav__sublist {
-        display: flex;
-        flex-direction: column;
-    }
 }
 
 .nav__link {
-    padding: 5px;
-    border-radius: 5px;
-    display: block;
     text-decoration: none;
     color: #000000;
     font-size: 16px;
-}
-
-.nav__sublist {
-    width: 125%;
-    position: absolute;
-    display: none;
-    top: 30px;
-}
-
-.nav__subitem {
-    padding: 10px;
-    text-align: left;
 }

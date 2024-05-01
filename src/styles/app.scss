@@ -2,3 +2,10 @@
 @import 'components/page';
 @import 'components/pageannexe';
 @import 'components/navbar';
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Pour inclure les bordures et les rembourrages dans la largeur et la hauteur totales */
+}
