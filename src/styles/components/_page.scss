@@ -8,7 +8,7 @@ body {
 
 .section1-card {
   max-width: 250px; /* Définissez la largeur maximale selon vos besoins */
-  margin: 0 auto; /* Pour centrer horizontalement */
+  margin: 30px auto; /* Pour centrer horizontalement */
   text-align: center; /* Pour centrer le contenu à l'intérieur du bloc */
   background-color: #F5F5F5; /* Fond bleu */
   padding: 0px;
@@ -37,17 +37,24 @@ body {
 
 
   &-paragraph,
-  &-paragraph2 {
+  &-paragraph2,
+  &-end__paragraph  {
     font-size: 16px;
-    margin-bottom: 10px;
+    margin-bottom: 1rem;
+    max-width: 700px;
   }
+
   &-paragraph--large {
     font-size: 21px;
     margin-bottom: 10px;
+    margin-bottom: 1rem;
   }
+
   &_title {
     font-size: 16px; 
     font-weight: 500;
+    margin-top: 1rem;
+    margin-bottom: 30px;
   }
 
 }
@@ -67,7 +74,7 @@ body {
   .section1-description {
     text-align: center; // Pour centrer le contenu horizontalement
     background-color: #F5F5F5; // Arrière-plan de la section
-    margin: 0 auto; // Pour centrer la boîte horizontalement
+    margin: 30px auto; // Pour centrer la boîte horizontalement
     max-width: 400px; // Largeur maximale de la boîte
     padding: 20px; 
     padding-left: 30px;
@@ -111,9 +118,8 @@ body {
   }
   
   .thisman__button {
-    border: none; // Supprimer la bordure
     cursor: pointer; // Curseur pointeur au survol
-    padding: 20px;
+    padding: 10px;
   }
   
  
@@ -127,10 +133,11 @@ body {
 
 
 
-  .section2-investigation__title {
+.section2-investigation__title {
     background-color: #E9F1FC;
     padding: 10px;
     border: 1px solid black;
+    max-width: 700px;
 }
 
 
