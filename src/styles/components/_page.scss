@@ -6,26 +6,105 @@ body {
 }
 
 
-
-
 .section1-card {
-  max-width: 400px; // Définissez la largeur maximale selon vos besoins
-  margin: 0 auto; // Pour centrer horizontalement
-  text-align: center; // Pour centrer le contenu à l'intérieur du bloc
-  background-color: #F5F5F5; // Fond bleu
+  max-width: 400px; /* Définissez la largeur maximale selon vos besoins */
+  margin: 0 auto; /* Pour centrer horizontalement */
+  text-align: center; /* Pour centrer le contenu à l'intérieur du bloc */
+  background-color: #F5F5F5; /* Fond bleu */
   padding: 10px;
-
 
   &__image {
     display: block;
-    margin: 0 auto; // Pour centrer l'image horizontalement
-    max-width: 100%; // Assurez-vous que l'image ne dépasse pas la largeur de la carte
+    margin: 0 auto; /* Pour centrer l'image horizontalement */
+    max-width: 100%; /* Assurez-vous que l'image ne dépasse pas la largeur de la carte */
   }
 
   &__caption {
     font-size: 12px;
-    color: #000000; // Couleur de la légende
-    text-align: start; // Centrage horizontal de la légende
+    color: #000000; /* Couleur de la légende */
+    text-align: start; /* Centrage horizontal de la légende */
+  }
+}
+
+
+.section1 {
+
+  &-paragraph--large {
+    font-size: 21px;
+    margin-bottom: 10px;
+  }
+  &-paragraph,&-paragraph2 {
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+
+  &_title {
+    font-size: 16px; 
+    font-weight: 500;
   }
 
 }
+
+.bold {
+  font-weight: bold;
+}
+
+.section1-description {
+
+
+    &__item {
+      color: #114DC6;
+    }
+  }
+
+  .section1-description {
+    text-align: center; // Pour centrer le contenu horizontalement
+    background-color: #F5F5F5; // Arrière-plan de la section
+    margin: 0 auto; // Pour centrer la boîte horizontalement
+    max-width: 500px; // Largeur maximale de la boîte
+    padding: 20px; // Ajouter de la marge autour de la section
+    font-size: 12px;
+    border: 1px solid black; 
+  
+    &__title {
+      display: inline-block; // Permettre la gestion de la largeur et du centrage
+      padding: 10px; // Ajouter un peu de marge autour du titre
+      font-weight: bold;
+    }
+  
+    &__list {
+      text-align: left; // Aligner le texte à gauche à l'intérieur de la liste
+  
+      &__item {
+        color: blue; // Couleur du texte en bleu
+      }
+
+      li {
+        margin-bottom: 10px; // Espacement de 40px entre chaque élément <li>
+      }
+    }
+  }
+  
+  .section1-end {
+    display: flex;
+    flex-direction: column;
+  
+    &__paragraph {
+      margin-bottom: 20px; // Espacement entre le paragraphe et le bouton
+    }
+  
+    &__button {
+      margin-left: auto; // Pour aligner le bouton à droite
+      @extend .thisman__button;
+      text-decoration: none; // Supprimer la décoration du lien
+      color: #000; // Couleur du texte en noir
+    }
+  }
+  
+  .thisman__button {
+    border: none; // Supprimer la bordure
+    cursor: pointer; // Curseur pointeur au survol
+    padding: 20px;
+  }
+  
+ 
