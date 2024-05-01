@@ -1,7 +1,31 @@
 body {
-  font-family: sans-serif;
+  font-family: 'Times New Roman', Times, serif;
   font-size: $size-text;
   line-height: 1.5;
   color: $c-text;
 }
 
+
+
+
+.section1-card {
+  max-width: 400px; // Définissez la largeur maximale selon vos besoins
+  margin: 0 auto; // Pour centrer horizontalement
+  text-align: center; // Pour centrer le contenu à l'intérieur du bloc
+  background-color: #F5F5F5; // Fond bleu
+  padding: 10px;
+
+
+  &__image {
+    display: block;
+    margin: 0 auto; // Pour centrer l'image horizontalement
+    max-width: 100%; // Assurez-vous que l'image ne dépasse pas la largeur de la carte
+  }
+
+  &__caption {
+    font-size: 12px;
+    color: #000000; // Couleur de la légende
+    text-align: start; // Centrage horizontal de la légende
+  }
+
+}
