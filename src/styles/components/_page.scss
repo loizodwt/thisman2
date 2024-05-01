@@ -11,18 +11,24 @@ body {
   margin: 0 auto; /* Pour centrer horizontalement */
   text-align: center; /* Pour centrer le contenu à l'intérieur du bloc */
   background-color: #F5F5F5; /* Fond bleu */
-  padding: 10px;
+  padding: 0px;
 
   &__image {
     display: block;
     margin: 0 auto; /* Pour centrer l'image horizontalement */
-    max-width: 100%; /* Assurez-vous que l'image ne dépasse pas la largeur de la carte */
+    max-width: 160%; /* Assurez-vous que l'image ne dépasse pas la largeur de la carte */
   }
 
   &__caption {
     font-size: 12px;
     color: #000000; /* Couleur de la légende */
     text-align: start; /* Centrage horizontal de la légende */
+    font-weight: bold;
+  }
+
+  &__figure {
+     margin: 0%;
+     padding: 5px;
   }
 }
 
