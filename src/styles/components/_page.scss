@@ -3,6 +3,10 @@ body {
   line-height: 1.5;
 }
 
+.bold {
+  font-weight: bold;
+}
+
 
 .section1-card {
   max-width: 400px; /* Définissez la largeur maximale selon vos besoins */
@@ -61,10 +65,6 @@ body {
 
 }
 
-.bold {
-  font-weight: bold;
-}
-
 .section1-description {
 
 
@@ -73,7 +73,8 @@ body {
     }
   }
 
-  .section1-description {
+  .section1-description,
+  .information-textbox {
     text-align: center; // Pour centrer le contenu horizontalement
     background-color: #F5F5F5; // Arrière-plan de la section
     margin: 30px auto; // Pour centrer la boîte horizontalement
@@ -89,7 +90,10 @@ body {
       padding: 10px; // Ajouter un peu de marge autour du titre
       font-weight: bold;
     }
-  
+    &__p{
+      font-weight: bold;
+      margin-top: 10px;
+    }
     &__list {
       text-align: left; // Aligner le texte à gauche à l'intérieur de la liste
   
@@ -100,6 +104,9 @@ body {
       li {
         margin-bottom: 10px; // Espacement de 40px entre chaque élément <li>
       }
+
+   
+
     }
   }
   
@@ -133,7 +140,7 @@ body {
       background-color: #E9F1FC;
       padding: 10px;
       border: 1px solid black;
-      max-width: 700px;
+      max-width: 80vh;
       margin-bottom: 30px;
     }
   
