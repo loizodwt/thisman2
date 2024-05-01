@@ -7,7 +7,7 @@ body {
 
 
 .section1-card {
-  max-width: 400px; /* Définissez la largeur maximale selon vos besoins */
+  max-width: 250px; /* Définissez la largeur maximale selon vos besoins */
   margin: 0 auto; /* Pour centrer horizontalement */
   text-align: center; /* Pour centrer le contenu à l'intérieur du bloc */
   background-color: #F5F5F5; /* Fond bleu */
@@ -35,15 +35,16 @@ body {
 
 .section1 {
 
+
+  &-paragraph,
+  &-paragraph2 {
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
   &-paragraph--large {
     font-size: 21px;
     margin-bottom: 10px;
   }
-  &-paragraph,&-paragraph2 {
-    font-size: 16px;
-    margin-bottom: 10px;
-  }
-
   &_title {
     font-size: 16px; 
     font-weight: 500;
@@ -67,8 +68,10 @@ body {
     text-align: center; // Pour centrer le contenu horizontalement
     background-color: #F5F5F5; // Arrière-plan de la section
     margin: 0 auto; // Pour centrer la boîte horizontalement
-    max-width: 500px; // Largeur maximale de la boîte
-    padding: 20px; // Ajouter de la marge autour de la section
+    max-width: 400px; // Largeur maximale de la boîte
+    padding: 20px; 
+    padding-left: 30px;
+    padding-right: 30px;
     font-size: 12px;
     border: 1px solid black; 
   
