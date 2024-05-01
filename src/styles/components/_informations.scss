@@ -111,4 +111,24 @@
 }
 
 
-
+.information-links {
+    margin-top: 30px;
+  
+    &__list {
+      list-style-type: none;
+      padding: 0px;
+  
+      &__item {
+        margin-bottom: 30px; /* Modification de la marge */
+  
+        & a {
+          color: blue;
+          text-decoration: none;
+  
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+  }
