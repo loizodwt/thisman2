@@ -1,0 +1,105 @@
+
+
+
+
+
+
+
+
+
+
+.information-history,
+.information-debunk {
+    margin-top: 30px;
+    
+
+    &__title {
+      background-color: #E9F1FC;
+      padding: 10px;
+      border: 1px solid black;
+      max-width: 80vh;
+      margin-bottom: 30px;
+    }
+  
+    &__paragraph {
+      max-width: 700px;
+      margin-top: 30px;
+      margin-bottom: 30px;
+      & .highlight {
+        font-weight: bold;
+      }
+    }
+  
+  }
+  
+
+  .information-story,
+  .information-textbox{
+
+    background-color: #F5F5F5; 
+    padding: 20px; 
+    font-size: 12px;
+    border: 1px solid black; 
+  
+    &__title {
+      display: inline-block; // Permettre la gestion de la largeur et du centrage
+      padding: 10px; // Ajouter un peu de marge autour du titre
+      font-weight: bold;
+    }
+    &__p{
+      font-weight: bold;
+      margin-top: 10px;
+    }
+
+  }  
+
+
+  .information-story{ 
+
+    font-size: 16px;
+  
+   }  
+
+
+
+   .information-otherlinks {
+
+    margin-top: 60px;
+
+    &__list {
+      padding: 0px; /* Supprime les espacements par défaut */
+    }
+  
+    &__link {
+      display: block; /* Pour que chaque lien soit sur une ligne séparée */
+      color: blue; /* Couleur du texte en bleu */
+      color: #114DC6;
+      padding: 30px;
+    }
+    &__title {
+        font-size: 16px; /* Taille de police */
+        font-weight: bold; /* Gras */
+        margin-bottom: 10px; /* Espacement en bas */
+      }
+
+
+  }
+  
+
+
+
+.information-debunk{
+    &__list {
+        list-style-type: none; 
+        padding: 0; 
+        max-width: 700px;
+    }
+  &__item {
+    margin-bottom: 30px;
+  }
+  
+
+}
+
+
+
