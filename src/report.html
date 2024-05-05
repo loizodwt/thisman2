@@ -57,30 +57,30 @@
     <div class="section1-report__text-area">
       <textarea id="report-text" class="section1-report__textarea"></textarea>
     </div>
-    <div class="section1-report__buttons">
-      <button class="thisman__button">Next Step</button>
-      <button class="thisman__button">Quit Report</button>
-    </div>
+
   </div>
 </section>
 
 
 
-<section class="section2-paint">
-  <p>faites un portrait robot</p>
+<section class="section2-paint paint">
+  <canvas id="canvas" class="paint__canvas"></canvas>
+  <div class="controls">
+    <input type="radio" id="drawRadio" name="mode" value="draw" checked class="controls__radio">
+    <label for="drawRadio" class="controls__label">Draw</label>
 
+    <input type="radio" id="eraseRadio" name="mode" value="erase" class="controls__radio">
+    <label for="eraseRadio" class="controls__label">Erase</label>
 
-  <canvas id="canvas"></canvas>
-  <div id="controls">
-    <button id="clearBtn">envoyer</button>
-    <input type="color" id="colorPicker" value="#000000">
-    <input type="range" id="sizeSlider" min="1" max="10" value="5">
-    <label>
-      <input type="checkbox" id="eraserCheckbox">
-      eraser
-    </label>
+    <input type="color" id="colorPicker" class="controls__color-picker">
+    <input type="range" id="sizeSlider" class="controls__size-slider" min="1" max="10" value="5">
+    <label for="sizeSlider" class="controls__label">Size</label>
+
+    <button id="clearBtn" class="controls__clear-button">Clear All</button>
   </div>
 </section>
+
+
 
 <section class="section_4_vibe">
   <p>cochez les cases qui se rapprochent le plus de l'effet qu'il vous a provoqué</p>
@@ -89,6 +89,11 @@
 <section class="section_5_recap">
   <p>recap</p>
 </section>
+
+<div class="section1-report__buttons">
+  <button class="thisman__button">Next Step</button>
+  <button class="thisman__button">Quit Report</button>
+</div>
 
 </body>
 </html>

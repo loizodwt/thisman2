@@ -24,7 +24,7 @@
 
 .section1-report__textarea {
   width: 100%;
-  height: 150px;
+  height: 400px;
   resize: vertical;
 }
 
@@ -34,3 +34,47 @@
 
 
 
+
+
+
+
+
+
+
+
+
+.section2-paint {
+  &.paint {
+    display: flex;
+    justify-content: space-evenly;
+    background-color: #F5F5F5; 
+    padding: 20px; 
+    max-width: 900px;
+
+    .paint__canvas {
+      margin-bottom: 20px;
+      border: 1px solid #000; 
+      background-color: #ffffff; 
+    }
+
+    .controls {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      flex-wrap: nowrap;
+
+      &__radio,
+      &__color-picker,
+      &__size-slider {
+        margin-bottom: 10px;
+      }
+
+
+      @media screen and (max-width: 768px) {
+        display: block;
+        justify-content: flex-start;
+        align-items: start;
+      }
+    }
+  }
+}
