@@ -132,3 +132,36 @@
       }
     }
   }
+
+
+
+
+
+
+
+
+
+
+
+/* Define the grid layout for desktop screens */
+@media only screen and (min-width: 768px) {
+ /* styles.css */
+
+/* Grid Layout */
+.informations {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Deux colonnes avec une largeur minimale de 300px */
+  gap: 20px; /* Espacement entre les éléments */
+}
+
+.grid-cell {
+  /* styles */
+}
+
+.right-content {
+  /* styles */
+}
+
+
+  /* Additional styling for grid items if needed */
+}
