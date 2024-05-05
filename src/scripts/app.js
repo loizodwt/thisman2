@@ -67,6 +67,31 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
   // Charger le pseudo enregistré lorsque la page est chargée
   var pseudoEnregistre = localStorage.getItem("pseudo");
   if (pseudoEnregistre) {
