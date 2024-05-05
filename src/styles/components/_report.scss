@@ -1,0 +1,36 @@
+
+
+
+.section1-report__title {
+  background-color: #E9F1FC;
+  padding: 10px;
+  border: 1px solid black;
+  margin-bottom: 30px;
+}
+
+
+
+.section1-report__content {
+  padding: 20px; /* Espacement intérieur */
+  border-radius: 5px; /* Bordures arrondies pour un aspect plus agréable */
+  background-color: white; /* Couleur de fond blanche */
+}
+
+.section1-report__text-area {
+  margin-bottom: 20px;
+  background-color: #F5F5F5; /* Couleur de fond pour la zone de texte */
+  padding: 20px; /* Espacement intérieur pour la zone de texte */
+}
+
+.section1-report__textarea {
+  width: 100%;
+  height: 150px;
+  resize: vertical;
+}
+
+.section1-report__buttons {
+  text-align: center;
+}
+
+
+
