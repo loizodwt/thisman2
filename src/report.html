@@ -67,15 +67,25 @@
 <section class="section2-paint paint">
   <canvas id="canvas" class="paint__canvas"></canvas>
   <div class="controls">
-    <input type="radio" id="drawRadio" name="mode" value="draw" checked class="controls__radio">
-    <label for="drawRadio" class="controls__label">Draw</label>
+    <div>
+      <label for="drawRadio" class="controls__label">Draw</label>
+      <input type="radio" id="drawRadio" name="mode" value="draw" checked class="controls__radio">
+    </div>
 
-    <input type="radio" id="eraseRadio" name="mode" value="erase" class="controls__radio">
-    <label for="eraseRadio" class="controls__label">Erase</label>
+    <div>
+      <label for="eraseRadio" class="controls__label">Erase</label>
+      <input type="radio" id="eraseRadio" name="mode" value="erase" class="controls__radio">
+    </div>
 
-    <input type="color" id="colorPicker" class="controls__color-picker">
-    <input type="range" id="sizeSlider" class="controls__size-slider" min="1" max="10" value="5">
-    <label for="sizeSlider" class="controls__label">Size</label>
+    <div>
+      <label for="colorPicker" class="controls__label">Color</label>
+      <input type="color" id="colorPicker" class="controls__color-picker">
+    </div>
+
+    <div>
+      <label for="sizeSlider" class="controls__label">Size</label>
+      <input type="range" id="sizeSlider" class="controls__size-slider" min="1" max="10" value="5">
+    </div>
 
     <button id="clearBtn" class="controls__clear-button">Clear All</button>
   </div>
