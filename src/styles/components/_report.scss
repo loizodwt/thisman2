@@ -61,24 +61,41 @@
 
 .section4-clothes {
   .grid {
+    background-color:  #F5F5F5;
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 20px;
 
     &__item {
-      border: 1px solid #000;
-      padding: 20px;
+     
+      padding: 10px;
 
       &-title {
         margin-bottom: 10px;
       }
 
       &-image {
-        max-width: 100%;
-        height: auto;
+        border: 1px solid black;
+        flex: 0 0 33.33%;
+        max-width: 33.33%;
+        transition: transform 0.3s ease;
+        opacity: 0;
         display: block;
+        margin: 0 auto; /* Centrer les images horizontalement */
+
+
+        &.active {
+          opacity: 1;
+        }
+        
       }
 
+      &-images {
+        display: flex;
+        justify-content: center; /* Centrer les images horizontalement */
+        overflow: hidden;
+      }
+      
       &-arrows {
         display: flex;
         justify-content: space-between;
@@ -105,25 +122,6 @@
   }
 }
 
-
-.grid__item-images {
-  display: flex;
-  justify-content: center; /* Centrer les images horizontalement */
-  overflow: hidden;
-}
-
-.grid__item-image {
-  flex: 0 0 33.33%;
-  max-width: 33.33%;
-  transition: transform 0.3s ease;
-  opacity: 0;
-  display: block;
-  margin: 0 auto; /* Centrer les images horizontalement */
-}
-
-.grid__item-image.active {
-  opacity: 1;
-}
 
 
 
