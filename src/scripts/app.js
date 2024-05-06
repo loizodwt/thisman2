@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
   const ctx = canvas.getContext('2d');
 
   // Taille initiale du canvas
-  const initialWidth = 500;
+  const initialWidth = 400;
   const initialHeight = 500; 
 
   // Définir la taille initiale du canvas
