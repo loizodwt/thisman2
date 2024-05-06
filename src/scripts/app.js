@@ -69,15 +69,28 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
+/////images clothes
+
+  const arrowLeftButtons = document.querySelectorAll('.grid__arrow--left');
+  const arrowRightButtons = document.querySelectorAll('.grid__arrow--right');
+
+  arrowLeftButtons.forEach(function (button) {
+    button.addEventListener('click', function () {
+      changeImage(this.parentNode.parentNode.querySelector('.grid__item-images'), 'previous');
+    });
+  });
+
+  arrowRightButtons.forEach(function (button) {
+    button.addEventListener('click', function () {
+      changeImage(this.parentNode.parentNode.querySelector('.grid__item-images'), 'next');
+    });
+  });
 
 
 
 
 
-
-
-
-
+/////images clothes
 
 
 
@@ -97,7 +110,13 @@ document.addEventListener('DOMContentLoaded', function() {
   if (pseudoEnregistre) {
     document.getElementById("pseudoAffiche").innerText = pseudoEnregistre;
   }
+
+
+
+
 });
+
+
 document.querySelector('.bouton__enregistrer').addEventListener('click', function () {
     sauvegarderPseudo();
 })
@@ -110,3 +129,36 @@ function sauvegarderPseudo() {
 
 
 
+
+
+
+
+
+
+
+
+/////images clothes
+
+
+  function changeImage(imageContainer, direction) {
+    const images = Array.from(imageContainer.querySelectorAll('.grid__item-image'));
+    const currentIndex = images.findIndex(image => image.classList.contains('active'));
+    const imageCount = images.length;
+  
+    let newIndex;
+    if (direction === 'next') {
+      newIndex = (currentIndex + 1) % imageCount;
+    } else if (direction === 'previous') {
+      newIndex = (currentIndex - 1 + imageCount) % imageCount;
+    }
+  
+    images.forEach((image, index) => {
+      image.classList.remove('active');
+      if (index === newIndex) {
+        image.classList.add('active');
+      }
+    });
+  }
+
+
+  /////images clothes

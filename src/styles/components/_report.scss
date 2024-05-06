@@ -1,7 +1,7 @@
 
 
 
-.section1-report__title {
+.report__title {
   background-color: #E9F1FC;
   padding: 10px;
   border: 1px solid black;
@@ -33,6 +33,97 @@
 }
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.section4-clothes {
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+
+    &__item {
+      border: 1px solid #000;
+      padding: 20px;
+
+      &-title {
+        margin-bottom: 10px;
+      }
+
+      &-image {
+        max-width: 100%;
+        height: auto;
+        display: block;
+      }
+
+      &-arrows {
+        display: flex;
+        justify-content: space-between;
+      }
+    }
+
+    &__arrow {
+      width: 50px;
+      height: 50px;
+    }
+
+    &__item--body {
+      grid-column: span 2;
+
+      @media screen and (min-width: 768px) {
+        grid-column: span 1;
+        grid-row: span 4;
+      }
+    }
+
+    @media screen and (min-width: 768px) {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+}
+
+
+.grid__item-images {
+  display: flex;
+  justify-content: center; /* Centrer les images horizontalement */
+  overflow: hidden;
+}
+
+.grid__item-image {
+  flex: 0 0 33.33%;
+  max-width: 33.33%;
+  transition: transform 0.3s ease;
+  opacity: 0;
+  display: block;
+  margin: 0 auto; /* Centrer les images horizontalement */
+}
+
+.grid__item-image.active {
+  opacity: 1;
+}
 
 
 
