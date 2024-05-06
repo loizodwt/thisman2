@@ -101,6 +101,49 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
+
+
+
+
+
+
+/////slider recap
+
+
+
+
+const images = document.querySelectorAll('.slider__image');
+let currentIndex = 0;
+
+function showImage(index) {
+  images.forEach((image, i) => {
+    if (i === index) {
+      image.style.display = 'block';
+    } else {
+      image.style.display = 'none';
+    }
+  });
+}
+
+showImage(currentIndex);
+
+document.querySelector('.slider__btn--prev').addEventListener('click', function () {
+  currentIndex = (currentIndex - 1 + images.length) % images.length;
+  showImage(currentIndex);
+});
+
+document.querySelector('.slider__btn--next').addEventListener('click', function () {
+  currentIndex = (currentIndex + 1) % images.length;
+  showImage(currentIndex);
+});
+
+
+
+
+
+
+
+
   
 
 

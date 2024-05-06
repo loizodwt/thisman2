@@ -6,30 +6,46 @@
   padding: 10px;
   border: 1px solid black;
   margin-bottom: 30px;
+  max-height: 400px; /* Définit une hauteur maximale de 400 pixels */
+  overflow-y: auto; /* Ajoute un défilement vertical si le contenu dépasse */
 }
 
 
-
 .section1-report__content {
-  padding: 20px; /* Espacement intérieur */
-  border-radius: 5px; /* Bordures arrondies pour un aspect plus agréable */
-  background-color: white; /* Couleur de fond blanche */
+  padding: 20px;
+  border-radius: 5px;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
 }
 
 .section1-report__text-area {
   margin-bottom: 20px;
-  background-color: #F5F5F5; /* Couleur de fond pour la zone de texte */
-  padding: 20px; /* Espacement intérieur pour la zone de texte */
+  background-color: #F5F5F5;
+  padding: 20px;
+
 }
 
 .section1-report__textarea {
-  width: 500px;
-  height: 400px;
+
+  min-width:400px;
+
+  height: 400px; 
   resize: vertical;
 }
 
-.section1-report__buttons {
-  text-align: center;
+.section1-report__text {
+  background-color: #F5F5F5;
+  margin-bottom: 20px;
+
+}
+
+@media screen and (min-width: 768px) {
+  .section1-report__content {
+    flex-direction: row;
+  }
+
+
 }
 
 
@@ -40,6 +56,63 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+.section2-paintbis {
+  padding-bottom: 100px;
+
+
+.slider {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  padding-top: 200px;
+  padding-bottom: 200px;
+  display: flex;
+  justify-content: center; /* Pour centrer horizontalement */
+  align-items: center; /* Pour centrer verticalement */
+
+
+  &__image {
+    display: none;
+    position: absolute;
+    top: 50%; /* Ajout pour centrer verticalement */
+    left: 50%; /* Ajout pour centrer horizontalement */
+    transform: translate(-50%, -50%); /* Ajout pour centrer l'image */
+    max-width: 300px; /* Limite de largeur */
+    max-height: 300px; /* Limite de hauteur */
+    width: auto; /* Ajustement automatique de la largeur */
+    height: auto; /* Ajustement automatique de la hauteur */
+  }
+
+  &__btn {
+    position: absolute;
+    bottom: 10px;
+    width: 50px;
+    height: 50px;
+    background-color: #F5F5F5;
+    cursor: pointer;
+    z-index: 1;
+
+    &--prev {
+      left: 300px;
+    }
+
+    &--next {
+      right: 300px;
+    }
+  }
+}
+
+}
 
 
 
