@@ -148,7 +148,7 @@
     display: grid;
     grid-template-columns: 2fr 1fr; /* Deux colonnes */
     gap: 20px; /* Espacement entre les éléments */
-    grid-template-rows: repeat(3, auto); /* Trois rangées */
+    grid-template-rows: repeat(6, auto);
   }
 
   .grid-case1 {
@@ -156,8 +156,7 @@
     grid-column: 2 / 2; /* Première case, occupant la première colonne */
   }
 
-  .grid-case2 {
-    grid-row: 1 / 3; /* Deuxième case, occupant la deuxième ligne */
+  .grid-case2 {/* Deuxième case, occupant la deuxième ligne */
     grid-column: 1 / 2; /* Deuxième case, occupant la première colonne */
   }
 
