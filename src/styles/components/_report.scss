@@ -26,7 +26,7 @@
 }
 
 .section1-report__textarea {
-  min-width: 400px;
+  width: 500px;
   height: 400px; 
   resize: vertical;
 }
@@ -42,7 +42,59 @@
   .section1-report__content {
     flex-direction: row;
   }
+
+
+
+  
 }
+
+
+
+@media screen and (max-width: 768px) {
+  .section1-report__textarea {
+    width: 350px;
+  }
+  
+  
+}
+
+
+
+
+.section1-report__textarea::placeholder {
+  color: #999; /* Couleur du texte */
+  font-family: 'Times New Roman', Times, serif;
+  padding: 20px;
+  font-size: 16px;
+}
+
+
+.section1-report__textarea:focus {
+  padding: 20px; 
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
