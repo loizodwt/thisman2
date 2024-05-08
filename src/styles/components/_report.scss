@@ -119,6 +119,12 @@
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 20px;
 
+    &__body-image {
+      display: block;
+      margin:0 auto;
+      width: 200px;
+    }
+
     &__item {
      
       padding: 10px;
