@@ -9,34 +9,30 @@ body {
 
 
 .section1-card {
-  max-width: 400px; /* Définissez la largeur maximale selon vos besoins */
-  margin: 30px auto; /* Pour centrer horizontalement */
-  text-align: center; /* Pour centrer le contenu à l'intérieur du bloc */
-  background-color: #F5F5F5; /* Fond bleu */
-  padding: 0px;
+  max-width: 250px; // Augmentez la largeur maximale de la carte selon vos besoins
+  margin: 30px auto;
+  background-color: #F5F5F5;
+  padding: 5px;
+  text-align: center;
 
   &__image {
     display: block;
-    margin: 0 auto; /* Pour centrer l'image horizontalement */
-    max-width: 1000px; /* Assurez-vous que l'image ne dépasse pas la largeur de la carte */
-  }
+    margin: 0 auto;
+    max-width: 100%; /* Utilisez plutôt 100% pour que l'image s'adapte à la largeur de son conteneur */
 
-  &__image img {
-    width: 1000%; /* Ajustez la largeur de l'image pour qu'elle occupe 100% de la largeur de son conteneur */
+    img {
+      width: 100%; /* Ajustez la largeur de l'image pour qu'elle occupe 100% de la largeur de son conteneur */
+    }
   }
 
   &__caption {
     font-size: 12px;
-    color: #000000; /* Couleur de la légende */
-    text-align: start; /* Centrage horizontal de la légende */
+    color: #000000;
+    text-align: start;
     font-weight: bold;
   }
-
-  &__figure {
-    margin: 0%;
-    padding: 5px;
-  }
 }
+
 
 
 .section1 {
@@ -139,7 +135,7 @@ body {
       background-color: #E9F1FC;
       padding: 10px;
       border: 1px solid black;
-      max-width: 80vh;
+      max-width: 100%;
       margin-bottom: 30px;
     }
   
@@ -251,6 +247,11 @@ body {
 
 
     .section2-investigation {
+      &__title {
+        max-width: 50%;
+
+      }
+    
       &__paragraph {
         margin-top: 60px;
         margin-bottom: 60px;
