@@ -1,5 +1,5 @@
 
-/////pseudooooo
+
 "use strict";
 
 
@@ -111,19 +111,19 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
-
 const images = document.querySelectorAll('.slider__image');
 let currentIndex = 0;
 
 function showImage(index) {
   images.forEach((image, i) => {
     if (i === index) {
-      image.style.display = 'block';
+      image.classList.add('active'); // Ajouter la classe active à l'image affichée
     } else {
-      image.style.display = 'none';
+      image.classList.remove('active'); // Retirer la classe active des autres images
     }
   });
 }
+
 
 showImage(currentIndex);
 

@@ -178,9 +178,23 @@
 
 
 
+.slider__image {
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 300px;
+  max-height: 300px;
+  width: auto;
+  height: auto;
+  transition: opacity 0.3s ease; /* Ajout de la transition pour une animation en douceur */
+}
 
-
-
+.slider__image.active {
+  display: block;
+  z-index: 1; /* Mettre l'image active au premier plan */
+}
 
 
 
