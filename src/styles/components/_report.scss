@@ -112,81 +112,6 @@
 
 
 
-.section4-clothes {
-  .grid {
-    background-color:  #F5F5F5;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 20px;
-
-    &__body-image {
-      display: block;
-      margin:0 auto;
-      width: 200px;
-    }
-
-    &__item {
-     
-      padding: 10px;
-
-      &-title {
-        display: flex;
-        margin-bottom: 10px;
-      }
-
-      &-image {
-        border: 1px solid black;
-        flex: 0 0 33.33%;
-        max-width: 33.33%;
-        transition: transform 0.3s ease;
-        opacity: 0;
-        display: block;
-        margin: 0 auto; /* Centrer les images horizontalement */
-
-
-        &.active {
-          opacity: 1;
-        }
-        
-      }
-
-      &-images {
-        display: flex;
-        justify-content: center; /* Centrer les images horizontalement */
-        overflow: hidden;
-      }
-      
-      &-arrows {
-        display: flex;
-        justify-content: space-between;
-      }
-    }
-
-    &__arrow {
-      font-size: x-large;
-      border: none;
-      background-color: #99999900;
-      width: 50px;
-      height: 50px;
-    }
-
-    &__item--body {
-      grid-column: span 2;
-
-      @media screen and (min-width: 768px) {
-        grid-column: span 1;
-        grid-row: span 4;
-      }
-    }
-
-    @media screen and (min-width: 768px) {
-      grid-template-columns: 1fr 1fr;
-    }
-  }
-}
-
-
-
 .slider__image {
   display: none;
   position: absolute;
@@ -237,6 +162,11 @@
 
     @media screen and (min-width: 768px) {
       grid-template-columns: 1fr 1fr; 
+      
+      #canvas {
+        margin: 0 auto; /* Pour centrer horizontalement */
+        display: block; /* Assurez-vous qu'il s'agit d'un élément de bloc */
+    }
     }
   }
 }
@@ -279,7 +209,6 @@
 
 
   &__image {
-    display: none;
     position: absolute;
     top: 50%; /* Ajout pour centrer verticalement */
     left: 50%; /* Ajout pour centrer horizontalement */
@@ -311,6 +240,105 @@
 
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.section4-clothes {
+  .grid {
+    background-color:  #F5F5F5;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+
+    &__body-image {
+      display: block;
+      margin:20px auto;
+      width: 250px;
+    }
+
+    &__item {
+     
+      padding: 10px;
+
+      &-title {
+        display: flex;
+        margin-bottom: 10px;
+      }
+
+      &-image {
+      
+        position: absolute;
+        top: 0;
+        left: 0;
+        opacity: 0;
+        transition: opacity 0.1s ease;
+        max-width: 150px;
+        max-height: 150px;
+        
+
+        &.active {
+          opacity: 1;
+        }
+        
+      }
+
+      &-images {
+        border: 1px solid black; /* Ajoute une bordure pour mieux visualiser la boîte */
+        position: relative;
+        margin: 0 auto;
+        height: 150px;
+        width: 150px;
+        overflow: hidden; /* Garde les images contenues dans la boîte */
+      }
+      
+      &-arrows {
+        display: flex;
+        justify-content: space-between;
+      }
+    }
+
+    &__arrow {
+      font-size: x-large;
+      background-color: #F0F0F0;
+      border: none;
+      border: 1px solid black;
+      border-radius: 15px;
+      padding-left: 10px;
+      padding-right: 10px;
+      width: 50px;
+      height: 50px;
+    }
+
+    &__item--body {
+      grid-column: span 2;
+
+      @media screen and (min-width: 768px) {
+        grid-column: span 1;
+        grid-row: span 4;
+      }
+    }
+
+    @media screen and (min-width: 768px) {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+}
 
 
 

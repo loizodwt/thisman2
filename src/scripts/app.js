@@ -6,62 +6,105 @@
 document.addEventListener('DOMContentLoaded', function() {
  
   const canvas = document.getElementById('canvas');
-  const ctx = canvas.getContext('2d');
+const ctx = canvas.getContext('2d');
 
-  // Taille initiale du canvas
-  const initialWidth = 400;
-  const initialHeight = 500; 
+function resizeCanvas() {
+  let newWidth, newHeight;
 
-  // Définir la taille initiale du canvas
-  canvas.width = initialWidth;
-  canvas.height = initialHeight;
+  // Vérifie si l'appareil est un mobile
+  const isMobile = window.matchMedia("(max-width: 767px)").matches;
 
-  let painting = false;
-  let erasing = false;
-
-  function startPosition(e) {
-    painting = true;
-    draw(e);
+  if (isMobile) {
+      // Pour les mobiles, définissez la largeur sur 100px et la hauteur sur 500px
+      newWidth = 400;
+      newHeight = 500;
+  } else {
+      // Pour les autres appareils, définissez la largeur sur 400px et la hauteur sur 300px
+      newWidth = 500;
+      newHeight = 400;
   }
 
-  function endPosition() {
-    painting = false;
+  canvas.width = newWidth;
+  canvas.height = newHeight;
+}
+
+
+
+
+
+
+function centerCanvasOnMobile() {
+  const isMobile = window.matchMedia("(max-width: 767px)").matches;
+  if (isMobile) {
+      const canvas = document.getElementById('canvas');
+      const windowWidth = window.innerWidth;
+      const canvasWidth = canvas.width;
+      const marginLeft = (windowWidth - canvasWidth) / 2;
+      canvas.style.marginLeft = marginLeft + 'px';
+  }
+}
+
+// Appel de la fonction pour centrer le canvas au chargement de la page
+window.addEventListener('load', centerCanvasOnMobile);
+
+
+
+
+
+
+
+
+
+
+
+window.addEventListener("resize", resizeCanvas);
+
+ctx.lineWidth = 3;
+ctx.lineJoin = 'round';
+ctx.lineCap = 'round';
+ctx.strokeStyle = '#000000';
+
+// Coordonnées de la souris
+const mouse = { x: 0, y: 0 };
+
+canvas.addEventListener('mousemove', function (e) {
+    mouse.x = e.pageX - this.offsetLeft;
+    mouse.y = e.pageY - this.offsetTop;
+}, false);
+
+canvas.addEventListener("touchmove", function (e) {
+    const touches = e.changedTouches;
+    mouse.x = touches[0].pageX - this.offsetLeft;
+    mouse.y = touches[0].pageY - this.offsetTop;
+}, false);
+
+canvas.addEventListener('mousedown', function (e) {
     ctx.beginPath();
-  }
+    ctx.moveTo(mouse.x, mouse.y);
+    canvas.addEventListener('mousemove', onPaint, false);
+}, false);
 
-  function draw(e) {
-    if (!painting) return;
-    // Obtenir les coordonnées de la souris par rapport au canvas
-    const x = e.clientX - canvas.getBoundingClientRect().left;
-    const y = e.clientY - canvas.getBoundingClientRect().top;
-    ctx.lineWidth = document.getElementById('sizeSlider').value;
-    ctx.lineCap = 'round';
-    ctx.strokeStyle = erasing ? 'white' : document.getElementById('colorPicker').value;
+canvas.addEventListener("touchstart", function (e) {
+    ctx.beginPath();
+    const touches = e.changedTouches;
+    mouse.x = touches[0].pageX - this.offsetLeft;
+    mouse.y = touches[0].pageY - this.offsetTop;
+    ctx.moveTo(mouse.x, mouse.y);
+    canvas.addEventListener("touchmove", onPaint, false);
+}, false);
 
-    ctx.lineTo(x, y);
+canvas.addEventListener('mouseup', function () {
+    canvas.removeEventListener('mousemove', onPaint, false);
+}, false);
+
+canvas.addEventListener("touchend", function () {
+    canvas.removeEventListener("touchmove", onPaint, false);
+}, false);
+
+function onPaint() {
+    ctx.lineTo(mouse.x, mouse.y);
     ctx.stroke();
-    ctx.beginPath();
-    ctx.moveTo(x, y);
-  }
-
-  canvas.addEventListener('mousedown', startPosition);
-  canvas.addEventListener('mouseup', endPosition);
-  canvas.addEventListener('mousemove', draw);
-
-  document.getElementById('drawRadio').addEventListener('change', function() {
-    erasing = false;
-  });
-
-  document.getElementById('eraseRadio').addEventListener('change', function() {
-    erasing = true;
-  });
-
-  document.getElementById('clearBtn').addEventListener('click', function() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-  });
-
-
-
+}
 
 
 
