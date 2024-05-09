@@ -4,107 +4,120 @@
 
 
 document.addEventListener('DOMContentLoaded', function() {
- 
   const canvas = document.getElementById('canvas');
-const ctx = canvas.getContext('2d');
+    const ctx = canvas.getContext('2d');
 
-function resizeCanvas() {
-  let newWidth, newHeight;
+    function resizeCanvas() {
+        let newWidth, newHeight;
 
-  // Vérifie si l'appareil est un mobile
-  const isMobile = window.matchMedia("(max-width: 767px)").matches;
+        const isMobile = window.matchMedia("(max-width: 767px)").matches;
 
-  if (isMobile) {
-      // Pour les mobiles, définissez la largeur sur 100px et la hauteur sur 500px
-      newWidth = 400;
-      newHeight = 500;
-  } else {
-      // Pour les autres appareils, définissez la largeur sur 400px et la hauteur sur 300px
-      newWidth = 500;
-      newHeight = 400;
-  }
+        if (isMobile) {
+            newWidth = 300;
+            newHeight = 400;
+        } else {
+            newWidth = 500;
+            newHeight = 400;
+        }
 
-  canvas.width = newWidth;
-  canvas.height = newHeight;
-}
+        canvas.width = newWidth;
+        canvas.height = newHeight;
+    }
 
+    window.addEventListener("resize", resizeCanvas);
 
+    const drawRadio = document.getElementById('drawRadio');
+    const eraseRadio = document.getElementById('eraseRadio');
+    const colorPicker = document.getElementById('colorPicker');
+    const sizeSlider = document.getElementById('sizeSlider');
+    const clearBtn = document.getElementById('clearBtn');
 
+    let isDrawing = false;
+    let mode = 'draw'; // Mode de dessin par défaut
+    let currentColor = '#000000'; // Couleur de dessin par défaut
+    let currentSize = 3; // Taille de dessin par défaut
 
+    // Fonction pour changer le mode de dessin
+    function changeMode(newMode) {
+        mode = newMode;
+        if (mode === 'erase') {
+            currentColor = '#ffffff'; // Couleur d'effacement est blanche
+        } else {
+            currentColor = colorPicker.value; // Utilise la couleur choisie par l'utilisateur
+        }
+    }
 
+    // Fonction pour effacer tout le contenu du canevas
+    function clearCanvas() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+    }
 
-function centerCanvasOnMobile() {
-  const isMobile = window.matchMedia("(max-width: 767px)").matches;
-  if (isMobile) {
-      const canvas = document.getElementById('canvas');
-      const windowWidth = window.innerWidth;
-      const canvasWidth = canvas.width;
-      const marginLeft = (windowWidth - canvasWidth) / 2;
-      canvas.style.marginLeft = marginLeft + 'px';
-  }
-}
+    // Gestionnaire d'événement pour le bouton "Clear All"
+    clearBtn.addEventListener('click', clearCanvas);
 
-// Appel de la fonction pour centrer le canvas au chargement de la page
-window.addEventListener('load', centerCanvasOnMobile);
+    // Gestionnaire d'événement pour le bouton radio Draw
+    drawRadio.addEventListener('change', function() {
+        changeMode('draw');
+    });
 
+    // Gestionnaire d'événement pour le bouton radio Erase
+    eraseRadio.addEventListener('change', function() {
+        changeMode('erase');
+    });
 
+    // Gestionnaire d'événement pour le sélecteur de couleur
+    colorPicker.addEventListener('change', function() {
+        currentColor = colorPicker.value;
+    });
 
+    // Gestionnaire d'événement pour le sélecteur de taille
+    sizeSlider.addEventListener('input', function() {
+        currentSize = parseInt(sizeSlider.value);
+    });
 
+    // Fonction pour dessiner ou effacer en fonction du mode
+    function onPaint() {
+        if (mode === 'erase') {
+            ctx.globalCompositeOperation = 'destination-out'; // Utiliser la composition pour effacer
+        } else {
+            ctx.globalCompositeOperation = 'source-over'; // Utiliser la composition pour dessiner
+            ctx.strokeStyle = currentColor;
+            ctx.lineWidth = currentSize;
+        }
+        ctx.lineTo(mouse.x, mouse.y);
+        ctx.stroke();
+    }
 
+    // Initialiser la taille du canevas
+    resizeCanvas();
 
+    // Coordonnées de la souris
+    const mouse = { x: 0, y: 0 };
 
+    canvas.addEventListener('mousemove', function(e) {
+        mouse.x = e.pageX - this.offsetLeft;
+        mouse.y = e.pageY - this.offsetTop;
+        if (isDrawing) {
+            onPaint();
+        }
+    });
 
+    canvas.addEventListener('mousedown', function(e) {
+        isDrawing = true;
+        ctx.beginPath();
+        ctx.moveTo(mouse.x, mouse.y);
+        canvas.addEventListener('mousemove', onPaint);
+    });
 
+    canvas.addEventListener('mouseup', function() {
+        isDrawing = false;
+        canvas.removeEventListener('mousemove', onPaint);
+    });
 
-
-window.addEventListener("resize", resizeCanvas);
-
-ctx.lineWidth = 3;
-ctx.lineJoin = 'round';
-ctx.lineCap = 'round';
-ctx.strokeStyle = '#000000';
-
-// Coordonnées de la souris
-const mouse = { x: 0, y: 0 };
-
-canvas.addEventListener('mousemove', function (e) {
-    mouse.x = e.pageX - this.offsetLeft;
-    mouse.y = e.pageY - this.offsetTop;
-}, false);
-
-canvas.addEventListener("touchmove", function (e) {
-    const touches = e.changedTouches;
-    mouse.x = touches[0].pageX - this.offsetLeft;
-    mouse.y = touches[0].pageY - this.offsetTop;
-}, false);
-
-canvas.addEventListener('mousedown', function (e) {
-    ctx.beginPath();
-    ctx.moveTo(mouse.x, mouse.y);
-    canvas.addEventListener('mousemove', onPaint, false);
-}, false);
-
-canvas.addEventListener("touchstart", function (e) {
-    ctx.beginPath();
-    const touches = e.changedTouches;
-    mouse.x = touches[0].pageX - this.offsetLeft;
-    mouse.y = touches[0].pageY - this.offsetTop;
-    ctx.moveTo(mouse.x, mouse.y);
-    canvas.addEventListener("touchmove", onPaint, false);
-}, false);
-
-canvas.addEventListener('mouseup', function () {
-    canvas.removeEventListener('mousemove', onPaint, false);
-}, false);
-
-canvas.addEventListener("touchend", function () {
-    canvas.removeEventListener("touchmove", onPaint, false);
-}, false);
-
-function onPaint() {
-    ctx.lineTo(mouse.x, mouse.y);
-    ctx.stroke();
-}
+    canvas.addEventListener('mouseleave', function() {
+        isDrawing = false;
+        canvas.removeEventListener('mousemove', onPaint);
+    });
 
 
 
