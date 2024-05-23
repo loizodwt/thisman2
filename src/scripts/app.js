@@ -243,8 +243,11 @@ function sauvegarderPseudo() {
     const images = Array.from(imageContainer.querySelectorAll('.grid__item-image'));
     const currentIndex = images.findIndex(image => image.classList.contains('active'));
     const imageCount = images.length;
+
+    console.log(imageContainer)
   
     let newIndex;
+    let currentImage;
     if (direction === 'next') {
       newIndex = (currentIndex + 1) % imageCount;
     } else if (direction === 'previous') {
@@ -255,8 +258,18 @@ function sauvegarderPseudo() {
       image.classList.remove('active');
       if (index === newIndex) {
         image.classList.add('active');
+        currentImage = image;
       }
     });
+
+    // update the body
+    let bodyTarget = imageContainer.getAttribute("data-target");
+    let bodyTargetElement = document.getElementById(bodyTarget);
+    if(currentImage && bodyTargetElement){
+      console.log(currentImage.src)
+      bodyTargetElement.style.backgroundImage = 'url('+currentImage.src+')';
+      console.log(bodyTargetElement);
+    }
   }
 
 
