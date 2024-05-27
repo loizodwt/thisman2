@@ -11,6 +11,7 @@
 .information-history,
 .information-debunk {
     margin-top: 30px;
+
     
 
     &__title {
@@ -53,6 +54,29 @@
 
   }  
 
+  .information-textbox{
+      margin: 20px;
+    &__img{
+      display: block;
+      margin: 0 auto;
+
+    }
+    &__a{
+      display:flex;
+      justify-content: start;
+
+    }
+
+  }  
+
+  .information-warning{ 
+    font-weight: bold;
+    background-color: #FCE9E9; 
+    padding: 20px; 
+    border: 0.5px solid #8D0000; /* Bordure extérieure */
+    box-shadow: 0 0 0 15px rgb(255, 255, 255), 0 0 0 16px #C40000; /* Double bordure */
+  
+   }  
 
   .information-story{ 
 
@@ -63,10 +87,13 @@
 
 
    .information-otherlinks {
-
-    margin: 20px;
-    margin-top: 60px;
-    margin-bottom: 60px;
+    
+      background-color: #F5F5F5;
+      border: 1px solid;
+      padding: 30px;
+      margin: 20px;
+      margin-top: 60px;
+      margin-bottom: 60px;
 
     &__list {
       padding: 0px; /* Supprime les espacements par défaut */
@@ -167,4 +194,22 @@
   .grid-case6 { grid-area: grid-case6; }
   .grid-case7 { grid-area: grid-case7; }
   /* Additional styling for grid items if needed */
+
+
+
+
+
+
+
+
+
+
+
+  
+.information-history,
+.information-debunk,
+.information-warning {
+   font-size: 27px;
+
+  }
 }

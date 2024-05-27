@@ -23,7 +23,12 @@
 .nav__link {
     text-decoration: none;
     color: #000000;
-    font-size: 16px;
+    font-size: 12px;
+    @media screen and (min-width: 400px) {
+       
+            font-size: 16px;
+        
+    }
 }
 
 
