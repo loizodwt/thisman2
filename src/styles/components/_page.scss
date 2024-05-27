@@ -12,14 +12,6 @@ body {
   max-width: 350px; // Augmentez la largeur maximale de la carte selon vos besoins
   margin: 30px auto;
   background-color: #F5F5F5;
-  padding: 5px;
-  text-align: center;
-
-  &__image {
-    display: block;
-    margin: 0 auto;
-
-  }
 
   &__caption {
     font-size: 12px;
@@ -30,7 +22,13 @@ body {
 }
 
 .card__image{
-  width: 330px;
+  width: 340px;
+  display: block;
+  margin: 0 auto;
+  text-align: start;
+
+
+
 
 }
 
@@ -38,7 +36,6 @@ body {
 
   display: flex;
   flex-direction: column; // Met en colonne pour mobile
-
 
 
   &-paragraph,
