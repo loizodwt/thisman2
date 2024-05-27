@@ -1,42 +1,12 @@
-
-
 "use strict";
 
-
 document.addEventListener('DOMContentLoaded', function() {
-  
 
 
 
 
 
-
-
-  function updateContent() {
-    const selectedOption = document.querySelector('.section1-contribution__dropdown-select').value;
-    const contents = document.querySelectorAll('.section1-contribution__content');
-
-    contents.forEach(content => {
-      content.style.display = content.classList.contains(`section1-contribution__content--${selectedOption}`) ? 'block' : 'none';
-    });
-  }
-
-  document.querySelector('.section1-contribution__dropdown-select').addEventListener('change', updateContent);
-
-  // Ensure the initial content is displayed correctly
-  updateContent();
-
-
-
-
-
-
-
-
-
-
-  
-  const canvas = document.getElementById('canvas');
+    const canvas = document.getElementById('canvas');
     const ctx = canvas.getContext('2d');
 
     function resizeCanvas() {
@@ -63,6 +33,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const colorPicker = document.getElementById('colorPicker');
     const sizeSlider = document.getElementById('sizeSlider');
     const clearBtn = document.getElementById('clearBtn');
+    const fileInput = document.getElementById('fileInput');
 
     let isDrawing = false;
     let mode = 'draw'; // Mode de dessin par défaut
@@ -106,9 +77,14 @@ document.addEventListener('DOMContentLoaded', function() {
     sizeSlider.addEventListener('input', function() {
         currentSize = parseInt(sizeSlider.value);
     });
-
+    
+    fileInput.addEventListener('change', function(event) {
+      const file = event.target.files[0]; // Récupérer le fichier sélectionné
+  
+      // Faire quelque chose avec le fichier ici, par exemple l'afficher dans une image ou le traiter d'une autre manière
+  });
     // Fonction pour dessiner ou effacer en fonction du mode
-    function onPaint() {
+    function onPaint(mouse) {
         if (mode === 'erase') {
             ctx.globalCompositeOperation = 'destination-out'; // Utiliser la composition pour effacer
         } else {
@@ -130,7 +106,7 @@ document.addEventListener('DOMContentLoaded', function() {
         mouse.x = e.pageX - this.offsetLeft;
         mouse.y = e.pageY - this.offsetTop;
         if (isDrawing) {
-            onPaint();
+            onPaint(mouse);
         }
     });
 
@@ -138,175 +114,111 @@ document.addEventListener('DOMContentLoaded', function() {
         isDrawing = true;
         ctx.beginPath();
         ctx.moveTo(mouse.x, mouse.y);
-        canvas.addEventListener('mousemove', onPaint);
+        canvas.addEventListener('mousemove', function() {
+            onPaint(mouse);
+        });
     });
 
     canvas.addEventListener('mouseup', function() {
         isDrawing = false;
-        canvas.removeEventListener('mousemove', onPaint);
+        canvas.removeEventListener('mousemove', function() {
+            onPaint(mouse);
+        });
     });
 
     canvas.addEventListener('mouseleave', function() {
         isDrawing = false;
-        canvas.removeEventListener('mousemove', onPaint);
+        canvas.removeEventListener('mousemove', function() {
+            onPaint(mouse);
+        });
     });
 
+    // Images clothes
 
+    const arrowLeftButtons = document.querySelectorAll('.grid__arrow--left');
+    const arrowRightButtons = document.querySelectorAll('.grid__arrow--right');
 
-
-
-
-
-/////images clothes
-
-  const arrowLeftButtons = document.querySelectorAll('.grid__arrow--left');
-  const arrowRightButtons = document.querySelectorAll('.grid__arrow--right');
-
-  arrowLeftButtons.forEach(function (button) {
-    button.addEventListener('click', function () {
-      changeImage(this.parentNode.parentNode.querySelector('.grid__item-images'), 'previous');
+    arrowLeftButtons.forEach(function(button) {
+        button.addEventListener('click', function() {
+            changeImage(this.parentNode.parentNode.querySelector('.grid__item-images'), 'previous');
+        });
     });
-  });
 
-  arrowRightButtons.forEach(function (button) {
-    button.addEventListener('click', function () {
-      changeImage(this.parentNode.parentNode.querySelector('.grid__item-images'), 'next');
+    arrowRightButtons.forEach(function(button) {
+        button.addEventListener('click', function() {
+            changeImage(this.parentNode.parentNode.querySelector('.grid__item-images'), 'next');
+        });
     });
-  });
 
+    // Slider recap
 
+    const images = document.querySelectorAll('.slider__image');
+    let currentIndex = 0;
 
-
-
-/////images clothes
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/////slider recap
-
-
-
-const images = document.querySelectorAll('.slider__image');
-let currentIndex = 0;
-
-function showImage(index) {
-  images.forEach((image, i) => {
-    if (i === index) {
-      image.classList.add('active'); // Ajouter la classe active à l'image affichée
-    } else {
-      image.classList.remove('active'); // Retirer la classe active des autres images
+    function showImage(index) {
+        images.forEach((image, i) => {
+            if (i === index) {
+                image.classList.add('active'); // Ajouter la classe active à l'image affichée
+            } else {
+                image.classList.remove('active'); // Retirer la classe active des autres images
+            }
+        });
     }
-  });
-}
 
+    showImage(currentIndex);
 
-showImage(currentIndex);
-
-document.querySelector('.slider__btn--prev').addEventListener('click', function () {
-  currentIndex = (currentIndex - 1 + images.length) % images.length;
-  showImage(currentIndex);
-});
-
-document.querySelector('.slider__btn--next').addEventListener('click', function () {
-  currentIndex = (currentIndex + 1) % images.length;
-  showImage(currentIndex);
-});
-
-
-
-
-
-
-
-
-  
-
-
-
-  // Charger le pseudo enregistré lorsque la page est chargée
-  var pseudoEnregistre = localStorage.getItem("pseudo");
-  if (pseudoEnregistre) {
-    document.getElementById("pseudoAffiche").innerText = pseudoEnregistre;
-  }
-
-
-
-
-});
-
-
-document.querySelector('.bouton__enregistrer').addEventListener('click', function () {
-    sauvegarderPseudo();
-})
-function sauvegarderPseudo() {
-    var pseudo = document.getElementById("pseudoInput").value;
-    localStorage.setItem("pseudo", pseudo);
-    document.getElementById("pseudoAffiche").innerText = pseudo;
-  }
-
-
-
-
-
-
-
-
-
-
-
-
-/////images clothes
-
-
-  function changeImage(imageContainer, direction) {
-    const images = Array.from(imageContainer.querySelectorAll('.grid__item-image'));
-    const currentIndex = images.findIndex(image => image.classList.contains('active'));
-    const imageCount = images.length;
-
-    console.log(imageContainer)
-  
-    let newIndex;
-    let currentImage;
-    if (direction === 'next') {
-      newIndex = (currentIndex + 1) % imageCount;
-    } else if (direction === 'previous') {
-      newIndex = (currentIndex - 1 + imageCount) % imageCount;
-    }
-  
-    images.forEach((image, index) => {
-      image.classList.remove('active');
-      if (index === newIndex) {
-        image.classList.add('active');
-        currentImage = image;
-      }
+    document.querySelector('.slider__btn--prev').addEventListener('click', function() {
+        currentIndex = (currentIndex - 1 + images.length) % images.length;
+        showImage(currentIndex);
     });
 
-    // update the body
-    let bodyTarget = imageContainer.getAttribute("data-target");
-    let bodyTargetElement = document.getElementById(bodyTarget);
-    if(currentImage && bodyTargetElement){
-      console.log(currentImage.src)
-      bodyTargetElement.style.backgroundImage = 'url('+currentImage.src+')';
-      console.log(bodyTargetElement);
+    document.querySelector('.slider__btn--next').addEventListener('click', function() {
+        currentIndex = (currentIndex + 1) % images.length;
+        showImage(currentIndex);
+    });
+
+    // Charger le pseudo enregistré lorsque la page est chargée
+    var pseudoEnregistre = localStorage.getItem("pseudo");
+    if (pseudoEnregistre) {
+        document.getElementById("pseudoAffiche").innerText = pseudoEnregistre;
     }
-  }
 
+    document.querySelector('.bouton__enregistrer').addEventListener('click', function() {
+        sauvegarderPseudo();
+    });
 
-  /////images clothes
+    function sauvegarderPseudo() {
+        var pseudo = document.getElementById("pseudoInput").value;
+        localStorage.setItem("pseudo", pseudo);
+        document.getElementById("pseudoAffiche").innerText = pseudo;
+    }
 
+    function changeImage(imageContainer, direction) {
+        const images = Array.from(imageContainer.querySelectorAll('.grid__item-image'));
+        const currentIndex = images.findIndex(image => image.classList.contains('active'));
+        const imageCount = images.length;
 
+        let newIndex;
+        let currentImage;
+        if (direction === 'next') {
+            newIndex = (currentIndex + 1) % imageCount;
+        } else if (direction === 'previous') {
+            newIndex = (currentIndex - 1 + imageCount) % imageCount;
+        }
 
+        images.forEach((image, index) => {
+            image.classList.remove('active');
+            if (index === newIndex) {
+                image.classList.add('active');
+                currentImage = image;
+            }
+        });
 
+        // Mettre à jour le corps
+        let bodyTarget = imageContainer.getAttribute("data-target");
+        let bodyTargetElement = document.getElementById(bodyTarget);
+        if (currentImage && bodyTargetElement) {
+            bodyTargetElement.style.backgroundImage = 'url(' + currentImage.src + ')';
+        }
+    }
+});

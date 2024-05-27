@@ -30,28 +30,13 @@
   </nav>
   
   </header>
-<section class="section1">
-  <div class="section1-content">
+
     <h2 class="section1_title">Ever dream of <span class="bold">this man</span>?</h2>
-    <p class="section1-paragraph">We're seeking your assistance in piecing together the identity of this man. Your input is crucial in constructing a clearer picture of this elusive figure. Please share any details you recall, no matter how small.</p>
-    <p class="section1-paragraph">Let's delve into the investigation together. Your contribution could hold the key to unlocking the identity of this man.</p>
-  </div>
-
-  <div class="section1__right">
-    <div class="section1-card">
-      <figure class="section1-card__figure">
-          <img src="./assets/images/thismaaan.jpg" alt="Description de l'image" class="card__image">
-          <figcaption class="section1-card__caption">this man</figcaption>
-      </figure>
-    </div>
- 
-   
-  </div>
-  
 </section>
 
 
-</section>
+
+
 
 
 
@@ -61,14 +46,34 @@
     <div class="section1-report__text-area">
       <textarea id="report-text" class="section1-report__textarea" placeholder="Write down all the information you remember about this man, even if it is not very precise. Don't hesitate to consult other people's testimonials to help you. "></textarea>
     </div>
-   
+
   </div>
+  <div class="report__buttons">
+    <button class="thisman__button">Next Step</button>
+    <button class="thisman__button">Quit Report</button>
+  </div>
+  
 </section>
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="section2-report">
 <h3 class="report__title">2. Draw here what comes closest to your memory of this man.</h3>
 
-<section class="section2-paint paint">
+<div class="section2-paint paint">
   <canvas id="canvas" class="paint__canvas"></canvas>
   <div class="controls">
     <div>
@@ -91,32 +96,24 @@
       <input type="range" id="sizeSlider" class="controls__size-slider" min="1" max="10" value="5">
     </div>
 
+   
     <button id="clearBtn" class="controls__clear-button">Clear All</button>
+   
+    <input type="file" id="fileInput" class="controls__file-input">
+       
   </div>
-</section>
-
-<h3 class="report__title"> Here are portraits made by other people recreating the this man they saw in their dreams.</h3>
+</div>
 
 
+<div class="report__buttons">
+  <button class="thisman__button">Next Step</button>
+  <button class="thisman__button">Quit Report</button>
+</div>
 
-
-
-
-
-<section class="section2-paintbis">
-  <div class="slider">
-    <img src="./assets/images/thisman_head.jpg" class="slider__image" alt="Image 1">
-    <img src="./assets/images/logo-heaj.png" class="slider__image" alt="Image 2">
-    <img src="./assets/images/thisman_head.jpg" class="slider__image" alt="Image 3">
-    <button class="slider__btn slider__btn--prev">&lt;</button>
-    <button class="slider__btn slider__btn--next">&gt;</button>
-  </div>
 </section>
 
 
 
-
-<h3 class="report__title">3. Reconstitute here the appearance closest to your memory of this man.  </h3>
 
 
 
@@ -132,6 +129,8 @@
 
 
 <section class="section4-clothes">
+
+  <h3 class="report__title"> Here are portraits made by other people recreating the this man they saw in their dreams.</h3>
 
   <section class="grid">
     <div class="grid__item grid__item--body">
@@ -150,13 +149,16 @@
         <img src="./assets/images/thisman_head.jpg" alt="top Image 2" class="grid__item-image">
         <img src="top_image3.jpg" alt="top Image 3" class="grid__item-image">
       </div>
-    </div>
+  
 
       <div class="grid__item-arrows">
         <button class="grid__arrow grid__arrow--left">&#60;</button>
         <button class="grid__arrow grid__arrow--right">&#62;</button>
       </div>
     </div>
+  </div>
+
+
     <div class="grid__item grid__item--bottom">
       <h2 class="grid__item-title">Bottom</h2>
 
@@ -200,7 +202,10 @@
       </div>
     </div>
   </section>
-
+  <div class="report__buttons">
+    <button class="thisman__button">Next Step</button>
+    <button class="thisman__button">Quit Report</button>
+  </div>
 </section>
 
 
@@ -211,27 +216,14 @@
 
 
 
-<h3 class="report__title">Here's your final report. Take the time to check the information, and modify it if necessary. </h3>
+<h3 class="report__title">Thank you for your participation, your testimony is invaluable in this survey. Here's your final report. Take the time to check the information, and modify it if necessary. </h3>
 
 <section class="section_5_recap">
  
 
-
-
-
-
-
-
-
-
-
-  
 </section>
 
-<div class="section1-report__buttons">
-  <button class="thisman__button">Next Step</button>
-  <button class="thisman__button">Quit Report</button>
-</div>
+
 
 </body>
 </html>
