@@ -83,6 +83,7 @@
     &-report {
       background-color: #F5F5F5;
       padding: 20px;
+      
     }
 
 }
@@ -105,14 +106,14 @@
 
 
 .modal {
-  display: none; /* Par défaut, la fenêtre modale est cachée */
+
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   background-color: white;
   padding: 20px;
-  border: 1px solid #ccc;
+
   z-index: 9999;
 
 
@@ -209,8 +210,6 @@
   justify-content: end;
 
 }
-
-
 
 
 
@@ -381,3 +380,94 @@
 
 
 
+
+.section_5_recap {
+  background-color: #f5f5f5;
+  padding: 20px;
+
+  .recap-content {
+    display: flex;
+    flex-direction: column;
+
+    .recap-details {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 5px;
+
+      &__title {
+        font-size: 24px;
+        font-weight: bold;
+      }
+
+      &__subtitle {
+        font-size: 18px;
+        margin-top: 10px;
+      }
+
+      &__text {
+        margin-top: 20px;
+        margin-bottom: 20px; // Add margin bottom for spacing before the images
+      }
+
+      .recap-images {
+        display: flex;
+        flex-direction: column;
+
+        .recap-image {
+          border: 1px solid black;
+          background-color: #ffffff;
+          padding: 20px;
+          margin-bottom: 10px;
+
+          h6 {
+            margin: 0;
+          }
+        }
+      }
+    }
+  }
+
+  .report__buttons {
+    margin-top: 20px;
+    display: flex;
+    justify-content: flex-end;
+
+   
+  }
+
+  @media (min-width: 768px) {
+    .recap-content {
+      display: grid;
+      grid-template-columns: 60% auto;
+      grid-gap: 20px;
+
+      .recap-details {
+        margin-right: 0;
+
+        .recap-images {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          grid-template-rows: auto auto;
+          grid-gap: 10px;
+
+          .recap-image {
+            &:first-child {
+              grid-column: 1 / 2;
+              grid-row: span 2;
+            }
+
+            &:nth-child(2) {
+              grid-column: 2;
+              grid-row: 1;
+            }
+
+            &:nth-child(3) {
+              grid-column: 2;
+              grid-row: 2;
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -11,7 +11,6 @@
 
   <script src="scripts/app.js" defer></script>
 
-
 </head>
 <body>
 
@@ -40,19 +39,59 @@
 
 
 
-<section class="section1-report">
+<section class="report-section section1-report">
   <h3 class="report__title">1. Enter all the information here closest to your memory of this man.</h3>
   <div class="section1-report__content">
-    <div class="section1-report__text-area">
-      <textarea id="report-text" class="section1-report__textarea" placeholder="Write down all the information you remember about this man, even if it is not very precise. Don't hesitate to consult other people's testimonials to help you. "></textarea>
-    </div>
-
+      <div class="section1-report__text-area">
+          <textarea id="report-text" class="section1-report__textarea" placeholder="Write down all the information you remember about this man, even if it is not very precise. Don't hesitate to consult other people's testimonials to help you."></textarea>
+      </div>
   </div>
   <div class="report__buttons">
-    <button class="thisman__button">Next Step</button>
-    <button class="thisman__button">Quit Report</button>
+      <button class="thisman__button thisman__button--next">NEXT STEP</button>
+      <a href="./index.html" class="thisman__button">QUIT REPORT</a>
   </div>
-  
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="report-section section2-report">
+  <h3 class="report__title">2. Draw here what comes closest to your memory of this man.</h3>
+  <div class="section2-paint paint">
+      <canvas id="canvas" class="paint__canvas"></canvas>
+      <div class="controls">
+          <div>
+              <label for="drawRadio" class="controls__label">Draw</label>
+              <input type="radio" id="drawRadio" name="mode" value="draw" checked class="controls__radio">
+          </div>
+          <div>
+              <label for="eraseRadio" class="controls__label">Erase</label>
+              <input type="radio" id="eraseRadio" name="mode" value="erase" class="controls__radio">
+          </div>
+          <div>
+              <label for="colorPicker" class="controls__label">Color</label>
+              <input type="color" id="colorPicker" class="controls__color-picker">
+          </div>
+          <div>
+              <label for="sizeSlider" class="controls__label">Size</label>
+              <input type="range" id="sizeSlider" class="controls__size-slider" min="1" max="10" value="5">
+          </div>
+          <button id="clearBtn" class="controls__clear-button">Clear All</button>
+          <input type="file" id="fileInput" class="controls__file-input">
+      </div>
+  </div>
+  <div class="report__buttons">
+      <button class="thisman__button thisman__button--next">NEXT STEP</button>
+      <a href="./index.html" class="thisman__button">QUIT REPORT</a>
+  </div>
 </section>
 
 
@@ -68,67 +107,7 @@
 
 
 
-
-
-<section class="section2-report">
-<h3 class="report__title">2. Draw here what comes closest to your memory of this man.</h3>
-
-<div class="section2-paint paint">
-  <canvas id="canvas" class="paint__canvas"></canvas>
-  <div class="controls">
-    <div>
-      <label for="drawRadio" class="controls__label">Draw</label>
-      <input type="radio" id="drawRadio" name="mode" value="draw" checked class="controls__radio">
-    </div>
-
-    <div>
-      <label for="eraseRadio" class="controls__label">Erase</label>
-      <input type="radio" id="eraseRadio" name="mode" value="erase" class="controls__radio">
-    </div>
-
-    <div>
-      <label for="colorPicker" class="controls__label">Color</label>
-      <input type="color" id="colorPicker" class="controls__color-picker">
-    </div>
-
-    <div>
-      <label for="sizeSlider" class="controls__label">Size</label>
-      <input type="range" id="sizeSlider" class="controls__size-slider" min="1" max="10" value="5">
-    </div>
-
-   
-    <button id="clearBtn" class="controls__clear-button">Clear All</button>
-   
-    <input type="file" id="fileInput" class="controls__file-input">
-       
-  </div>
-</div>
-
-
-<div class="report__buttons">
-  <button class="thisman__button">Next Step</button>
-  <button class="thisman__button">Quit Report</button>
-</div>
-
-</section>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<section class="section4-clothes">
+<section class="report-section section4-clothes">
 
   <h3 class="report__title"> Here are portraits made by other people recreating the this man they saw in their dreams.</h3>
 
@@ -202,9 +181,10 @@
       </div>
     </div>
   </section>
+
   <div class="report__buttons">
-    <button class="thisman__button">Next Step</button>
-    <button class="thisman__button">Quit Report</button>
+    <button class="thisman__button thisman__button--next">NEXT STEP</button>
+    <a href="./index.html" class="thisman__button">QUIT REPORT</a>
   </div>
 </section>
 
@@ -216,13 +196,35 @@
 
 
 
-<h3 class="report__title">Thank you for your participation, your testimony is invaluable in this survey. Here's your final report. Take the time to check the information, and modify it if necessary. </h3>
 
-<section class="section_5_recap">
- 
-
+<section class="report-section section_5_recap">
+  <h3 class="report__title">Thank you for your participation, your testimony is invaluable in this survey. Here's your final report. Take the time to check the information, and modify it if necessary.</h3>
+  <div class="recap-content">
+      <div class="recap-details">
+          <h4 class="recap-details__title">Title</h4>
+          <h5 class="recap-details__subtitle">Subtitle</h5>
+          <p class="recap-details__text">This is the detailed text that describes the report. More information goes here.</p>
+          <div class="recap-images">
+              <div class="recap-image recap-image--testimony">
+                  <h4>Testimony</h4>
+                  <div class="content"></div>
+              </div>
+              <div class="recap-image recap-image--portrait">
+                  <h4>Portrait</h4>
+                  <div class="content"></div>
+              </div>
+              <div class="recap-image recap-image--appearance">
+                  <h4>Appearance</h4>
+                  <div class="content"></div>
+              </div>
+          </div>
+      </div>
+  </div>
+  <div class="report__buttons">
+      <button class="thisman__button">MODIFY</button>
+      <button class="thisman__button">UPLOAD</button>
+  </div>
 </section>
-
 
 
 </body>
