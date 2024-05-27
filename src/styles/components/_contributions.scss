@@ -7,14 +7,17 @@
   &__dropdown {
     margin-bottom: 1em;
 
+
     &-select {
+      background-color: #f5F5F5; 
       padding: 0.5em;
       font-size: 1em;
+      border-radius: none;
     }
   }
 
   &__content {
-    background-color: #f5F5F5; // Change this to your desired background color
+    background-color: #f5F5F5; 
     padding: 1em;
     border-radius: 5px;
 
