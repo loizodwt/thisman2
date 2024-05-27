@@ -1,39 +1,56 @@
 .section1-contribution {
   &__title {
-    background-color: #E9F1FC;
-    padding: 10px;
-    border: 1px solid black;
-    margin-bottom: 30px;
+    font-size: 2em;
+    margin-bottom: 0.5em;
   }
 
   &__dropdown {
     margin-bottom: 1em;
 
     &-select {
-      padding: 15px 20px;
+      padding: 0.5em;
       font-size: 1em;
-      background-color: #F5F5F5;
     }
   }
+
   &__content {
-    background-color: #F5F5F5;
+    background-color: #f0f0f0; // Change this to your desired background color
     padding: 1em;
     border-radius: 5px;
+
+    &--testimonies {
+      display: block;
+    }
   }
+
   &__subtitle {
     font-size: 1.5em;
     margin-bottom: 0.5em;
-    background-color: #F5F5F5;
   }
 
   &__paragraphs {
-    padding: 15px;
-    
     &__paragraph {
       margin-bottom: 1em;
       font-size: 1em;
       line-height: 1.5;
+    }
+  }
 
+  &__images {
+    display: grid;
+    gap: 10px;
+
+    .section1-contribution__image {
+      width: 100%;
+      height: auto;
+    }
+
+    @media (min-width: 768px) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    @media (max-width: 767px) {
+      grid-template-columns: 1fr;
     }
   }
 }

@@ -4,6 +4,38 @@
 
 
 document.addEventListener('DOMContentLoaded', function() {
+  
+
+
+
+
+
+
+
+  function updateContent() {
+    const selectedOption = document.querySelector('.section1-contribution__dropdown-select').value;
+    const contents = document.querySelectorAll('.section1-contribution__content');
+
+    contents.forEach(content => {
+      content.style.display = content.classList.contains(`section1-contribution__content--${selectedOption}`) ? 'block' : 'none';
+    });
+  }
+
+  document.querySelector('.section1-contribution__dropdown-select').addEventListener('change', updateContent);
+
+  // Ensure the initial content is displayed correctly
+  updateContent();
+
+
+
+
+
+
+
+
+
+
+  
   const canvas = document.getElementById('canvas');
     const ctx = canvas.getContext('2d');
 
@@ -274,3 +306,7 @@ function sauvegarderPseudo() {
 
 
   /////images clothes
+
+
+
+
