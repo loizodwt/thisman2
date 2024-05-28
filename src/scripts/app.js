@@ -1,7 +1,7 @@
 "use strict";
 
 document.addEventListener('DOMContentLoaded', function() {
-    // Hide all sections except the first one
+
     var sections = document.querySelectorAll(".report-section");
     for (var i = 1; i < sections.length; i++) {
         sections[i].style.display = "none";
@@ -258,4 +258,38 @@ document.addEventListener('DOMContentLoaded', function() {
             bodyTargetElement.style.backgroundImage = 'url(' + currentImage.src + ')';
         }
     }
+
+
+
+
+
+
+
+
+
+    
 });
+
+/////TESITONIES
+
+const dropdown = document.querySelector('.section1-contribution__dropdown-select');
+const contents = document.querySelectorAll('.section1-contribution__content');
+
+function updateContentVisibility() {
+  const selectedValue = dropdown.value;
+
+  contents.forEach(content => {
+    if (content.classList.contains(`section1-contribution__content--${selectedValue}`)) {
+      content.style.display = 'block';
+    } else {
+      content.style.display = 'none';
+    }
+  });
+}
+
+dropdown.addEventListener('change', updateContentVisibility);
+
+
+updateContentVisibility();
+
+/////TESITONIES
