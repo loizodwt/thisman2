@@ -40,7 +40,7 @@
   padding: 20px;
   font-size: 12px;
   border: 1px solid black;
-  max-width: 400px;
+  max-width: 500px;
 
   &__title {
     display: inline-block;
@@ -87,7 +87,7 @@
   margin: 20px;
   margin-top: 60px;
   margin-bottom: 60px;
-  max-width: 400px;
+  max-width: 500px;
      display: block;
     margin: 0 auto;
 
@@ -141,9 +141,9 @@
     border: 1px solid;
     padding: 30px;
     background-color: #F5F5F5;
-    max-width: 400px;
+    max-width: 500px;
     display: block;
-    margin: 0 auto;
+    margin: 50px auto;
   
     &__title {
       text-align: center;
@@ -162,11 +162,15 @@
     }
   
     &__image {
-      padding: 10%;
-      max-width: 100%; /* La largeur maximale de l'image est de 100% du conteneur */
-      height: auto; /* La hauteur s'ajustera automatiquement pour conserver les proportions de l'image */
-      display: block;
       margin: 0 auto;
+      padding-top: 60px;
+      padding-bottom: 60px;
+      padding-left: 2vw;
+      padding-right: 2vw;
+      max-width: 90%; 
+      height: auto; 
+      display: block;
+    
     }
   }
   
@@ -184,7 +188,7 @@
 
     margin-top: 30px;
     margin-bottom: 60px;
-    max-width: 400px;
+    max-width: 500px;
 
 
 
@@ -232,6 +236,16 @@
     margin-top: 30px;
   }
 
+  &__img {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+    & img{
+      width: 400px;
+    }
+  
+  }
+
 
 }
 
@@ -254,7 +268,7 @@
 /* Medias */
 
 
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: 1000px) {
   .information-history,
   .information-debunk,
   .information-warning {
@@ -337,7 +351,25 @@
 
 
 
+  .information-otherlinks {
 
+    margin-top: 50px;
+    margin-bottom: 60px;
+
+
+  }
+  .information-identity {
+    margin: 0 auto;
+}
+
+  
+  .information-identity__image {
+    padding-bottom: 20px;
+    width: 400px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
 
 
 
