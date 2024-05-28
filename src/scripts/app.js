@@ -1,6 +1,7 @@
 "use strict";
 
 document.addEventListener('DOMContentLoaded', function() {
+    
 
     var sections = document.querySelectorAll(".report-section");
     for (var i = 1; i < sections.length; i++) {
@@ -258,7 +259,6 @@ document.addEventListener('DOMContentLoaded', function() {
             bodyTargetElement.style.backgroundImage = 'url(' + currentImage.src + ')';
         }
     }
-
 
 
 

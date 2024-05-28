@@ -1,5 +1,5 @@
 
-.highlight {
+.bold {
   font-weight: bold;
 }
 .blue {
@@ -13,6 +13,11 @@
   margin-bottom: 20px;
 }
 
+.history__paragraph {
+  margin-bottom: 20px;
+  font-size: 16px;
+
+}
 
 .information-warning {
   margin: 10px;
@@ -304,7 +309,11 @@
   }
   
 
+  .history__paragraph {
+    font-size: 20px;
 
+  }
+  
 
 
   .information-warning {
