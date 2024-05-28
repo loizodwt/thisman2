@@ -28,12 +28,14 @@
 
 
 .information-textbox {
+  margin: 0 auto;
   margin-top: 20px;
   margin-bottom: 20px;
   background-color: #F5F5F5;
   padding: 20px;
   font-size: 12px;
   border: 1px solid black;
+  max-width: 400px;
 
   &__title {
     display: inline-block;
@@ -58,6 +60,13 @@
     justify-content: start;
     padding-top: 20px;
     padding-bottom: 20px;
+    
+  }
+  &__img {
+   display: block;
+   margin: 0 auto;
+   width: 80%;
+    
   }
 }
 
@@ -73,6 +82,9 @@
   margin: 20px;
   margin-top: 60px;
   margin-bottom: 60px;
+  max-width: 400px;
+     display: block;
+    margin: 0 auto;
 
   &__list {
     padding: 0;
@@ -125,6 +137,8 @@
     padding: 30px;
     background-color: #F5F5F5;
     max-width: 400px;
+    display: block;
+    margin: 0 auto;
   
     &__title {
       text-align: center;
@@ -156,11 +170,17 @@
 
 
 .information-debunk {
+
+
+
   &__list {
     list-style-type: none;
     padding: 0;
+
     margin-top: 30px;
     margin-bottom: 60px;
+    max-width: 400px;
+
 
 
 
@@ -248,9 +268,9 @@
 
   .informations {
     display: grid; 
-    grid-template-columns: auto auto;
+    grid-template-columns: 6fr 4fr; 
     grid-template-rows: auto auto auto auto auto auto auto; 
-    gap: 100px; 
+    gap: 0px 100px; 
     grid-template-areas: 
       "grid-case2 grid-case1"
       "grid-case2 grid-case3"
@@ -271,6 +291,42 @@
   .grid-case9 { grid-area: grid-case9; }
   .grid-case10 { grid-area: grid-case10; }
   .grid-case11 { grid-area: grid-case11; }
+
+
+
+
+
+
+  .information__paragraph {
+    font-size: 27px;
+    margin-top: 40px;
+    margin-bottom: 40px;
+  }
+  
+
+
+
+
+  .information-warning {
+    margin-top: 80px;
+    margin-bottom: 80px;
+
+  }
+  .information-debunk {
+    &__list {
+   
+      display: block;
+      margin: 50px auto;
+  
+
+    }
+ 
+  }
+
+
+
+
+
 
 
 
