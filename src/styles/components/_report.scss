@@ -166,51 +166,58 @@
     display: grid;
     grid-template-columns: 1fr;
     column-gap: 20px; /* Espacement entre les colonnes */
-    background-color: #F5F5F5; 
-    padding: 20px; 
-
+    background-color: #F5F5F5;
+    padding: 20px;
 
     .paint__canvas {
       margin-bottom: 20px;
-      background-color: #ffffff; 
+      background-color: #ffffff;
       margin: 0 auto;
-      margin-bottom: 20px;
     }
 
     .controls {
-      display: flex;
-      flex-direction: column;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      column-gap: 20px;
+      row-gap: 5px;
+      margin-top: 20px;
+      @media screen and (min-width: 768px) {
+        margin-top: 0px;
+      }
 
       &__radio,
       &__color-picker,
-      &__size-slider {
+      &__size-slider,
+      &__clear-button,
+      &__file-input {
         margin-bottom: 20px;
+      }
+
+      @media screen and (min-width: 768px) {
+        grid-template-columns: 1fr;
       }
     }
 
     @media screen and (min-width: 768px) {
-      grid-template-columns: 1fr 1fr; 
-      
-      #canvas {
-        margin: 0 auto; /* Pour centrer horizontalement */
-        display: block; /* Assurez-vous qu'il s'agit d'un élément de bloc */
-    }
+      grid-template-columns: 1fr 1fr;
+
+      .paint__canvas {
+        margin: 0 auto;
+        display: block; 
+      }
     }
   }
 }
 
 .controls__clear-button {
   width: 100px;
-
-     
+  height: 50px;
 }
 
 .report__buttons {
   display: flex;
   justify-content: end;
-
 }
-
 
 
 

@@ -20,17 +20,20 @@ document.addEventListener('DOMContentLoaded', function() {
             var canvasData = canvas.toDataURL();
             localStorage.setItem('canvasImage', canvasData);
 
+            // Create combined image and save it to local storage
+            var combinedImage = createCombinedImage();
+            localStorage.setItem('combinedImage', combinedImage);
+
             sections[index].style.display = "none"; // Hide current section
             if (index + 1 < sections.length) {
                 sections[index + 1].style.display = "block"; // Show next section
             } else {
-                // If it's the last section, show a message or perform any other action
                 console.log("End of sections reached.");
             }
         });
     });
 
-    // Display saved textarea content in the recap section
+    // Display saved content in the recap section
     var recapSection = document.querySelector(".section_5_recap");
     if (recapSection) {
         var savedReportText = localStorage.getItem('reportText');
@@ -38,15 +41,51 @@ document.addEventListener('DOMContentLoaded', function() {
             recapSection.querySelector('.recap-image--testimony .content').textContent = savedReportText;
         }
 
-        // Display saved canvas content in the recap section
         var savedCanvasImage = localStorage.getItem('canvasImage');
         if (savedCanvasImage) {
             var img = new Image();
             img.src = savedCanvasImage;
             recapSection.querySelector('.recap-image--portrait .content').appendChild(img);
         }
+
+        var savedCombinedImage = localStorage.getItem('combinedImage');
+        if (savedCombinedImage) {
+            var img = new Image();
+            img.src = savedCombinedImage;
+            recapSection.querySelector('.recap-image--appearance .content').appendChild(img);
+        }
     }
 
+    // Function to create a combined image
+    function createCombinedImage() {
+        const canvas = document.createElement('canvas');
+        const ctx = canvas.getContext('2d');
+        const images = [];
+
+        // Get active images
+        const bodyParts = ['tm_top', 'tm_bottom', 'tm_shoes', 'tm_accessoiries'];
+        bodyParts.forEach(part => {
+            const activeImage = document.querySelector(`.grid__item-images[data-target="${part}"] .grid__item-image.active`);
+            if (activeImage) {
+                images.push(activeImage);
+            }
+        });
+
+        // Set canvas size (adjust according to your needs)
+        canvas.width = 400;
+        canvas.height = 400;
+
+        // Draw each image onto the canvas
+        let yOffset = 0;
+        images.forEach((image, index) => {
+            ctx.drawImage(image, 0, yOffset, canvas.width, canvas.height / images.length);
+            yOffset += canvas.height / images.length;
+        });
+
+        return canvas.toDataURL();
+    }
+
+    // Initialize canvas for drawing
     const canvas = document.getElementById('canvas');
     const ctx = canvas.getContext('2d');
 
@@ -175,92 +214,48 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
+    // Images clothes
+    const arrowLeftButtons = document.querySelectorAll('.grid__arrow--left');
+    const arrowRightButtons = document.querySelectorAll('.grid__arrow--right');
 
+    arrowLeftButtons.forEach(function(button) {
+        button.addEventListener('click', function() {
+            changeImage(this.parentNode.parentNode.querySelector('.grid__item-images'), 'previous');
+        });
+    });
 
+    arrowRightButtons.forEach(function(button) {
+        button.addEventListener('click', function() {
+            changeImage(this.parentNode.parentNode.querySelector('.grid__item-images'), 'next');
+        });
+    });
 
+    function changeImage(imageContainer, direction) {
+        const images = Array.from(imageContainer.querySelectorAll('.grid__item-image'));
+        const currentIndex = images.findIndex(image => image.classList.contains('active'));
+        const imageCount = images.length;
 
+        let newIndex;
+        let currentImage;
+        if (direction === 'next') {
+            newIndex = (currentIndex + 1) % imageCount;
+        } else if (direction === 'previous') {
+            newIndex = (currentIndex - 1 + imageCount) % imageCount;
+        }
 
+        images.forEach((image, index) => {
+            image.classList.remove('active');
+            if (index === newIndex) {
+                image.classList.add('active');
+                currentImage = image;
+            }
+        });
 
-
-
-
-
-
-
-
-     // Images clothes
-
-     const arrowLeftButtons = document.querySelectorAll('.grid__arrow--left');
-     const arrowRightButtons = document.querySelectorAll('.grid__arrow--right');
- 
-     arrowLeftButtons.forEach(function(button) {
-         button.addEventListener('click', function() {
-             changeImage(this.parentNode.parentNode.querySelector('.grid__item-images'), 'previous');
-         });
-     });
- 
-     arrowRightButtons.forEach(function(button) {
-         button.addEventListener('click', function() {
-             changeImage(this.parentNode.parentNode.querySelector('.grid__item-images'), 'next');
-         });
-     });
- 
- /* 
-     // Charger le pseudo enregistré lorsque la page est chargée
-     var pseudoEnregistre = localStorage.getItem("pseudo");
-     if (pseudoEnregistre) {
-         document.getElementById("pseudoAffiche").innerText = pseudoEnregistre;
-     }
- 
-     document.querySelector('.bouton__enregistrer').addEventListener('click', function() {
-         sauvegarderPseudo();
-     });
- 
-     function sauvegarderPseudo() {
-         var pseudo = document.getElementById("pseudoInput").value;
-         localStorage.setItem("pseudo", pseudo);
-         document.getElementById("pseudoAffiche").innerText = pseudo;
-     }
- */
-     function changeImage(imageContainer, direction) {
-         const images = Array.from(imageContainer.querySelectorAll('.grid__item-image'));
-         const currentIndex = images.findIndex(image => image.classList.contains('active'));
-         const imageCount = images.length;
- 
-         let newIndex;
-         let currentImage;
-         if (direction === 'next') {
-             newIndex = (currentIndex + 1) % imageCount;
-         } else if (direction === 'previous') {
-             newIndex = (currentIndex - 1 + imageCount) % imageCount;
-         }
- 
-         images.forEach((image, index) => {
-             image.classList.remove('active');
-             if (index === newIndex) {
-                 image.classList.add('active');
-                 currentImage = image;
-             }
-         });
- 
-         // Mettre à jour le corps
-         let bodyTarget = imageContainer.getAttribute("data-target");
-         let bodyTargetElement = document.getElementById(bodyTarget);
-         if (currentImage && bodyTargetElement) {
-             bodyTargetElement.style.backgroundImage = 'url(' + currentImage.src + ')';
-         }
-     }
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
-
-     
+        // Update the body part's background image
+        let bodyTarget = imageContainer.getAttribute("data-target");
+        let bodyTargetElement = document.getElementById(bodyTarget);
+        if (currentImage && bodyTargetElement) {
+            bodyTargetElement.style.backgroundImage = 'url(' + currentImage.src + ')';
+        }
+    }
 });
