@@ -1,149 +1,195 @@
 
-
-
-
-
-
-
-
-
-
-.information-history,
-.information-debunk {
-    margin-top: 30px;
-
-    
-
-    &__title {
-      background-color: #E9F1FC;
-      padding: 10px;
-      border: 1px solid black;
-      max-width: 80vh;
-      margin-bottom: 30px;
-    }
-  
-    &__paragraph {
-      max-width: 700px;
-      margin-top: 30px;
-      margin-bottom: 30px;
-      & .highlight {
-        font-weight: bold;
-      }
-    }
-  
-  }
-  
-
-  .information-story,
-  .information-textbox{
-
-    background-color: #F5F5F5; 
-    padding: 20px; 
-    font-size: 12px;
-    border: 1px solid black; 
-  
-    &__title {
-      display: inline-block; // Permettre la gestion de la largeur et du centrage
-      padding: 10px; // Ajouter un peu de marge autour du titre
-      font-weight: bold;
-    }
-    &__p{
-      font-weight: bold;
-      margin-top: 10px;
-    }
-
-  }  
-
-  .information-textbox{
-      margin: 20px;
-    &__img{
-      display: block;
-      margin: 0 auto;
-
-    }
-    &__a{
-      display:flex;
-      justify-content: start;
-
-    }
-
-  }  
-
-  .information-warning{ 
-    font-weight: bold;
-    background-color: #FCE9E9; 
-    padding: 20px; 
-    border: 0.5px solid #8D0000; /* Bordure extérieure */
-    box-shadow: 0 0 0 15px rgb(255, 255, 255), 0 0 0 16px #C40000; /* Double bordure */
-  
-   }  
-
-  .information-story{ 
-
-    font-size: 16px;
-  
-   }  
-
-
-
-   .information-otherlinks {
-    
-      background-color: #F5F5F5;
-      border: 1px solid;
-      padding: 30px;
-      margin: 20px;
-      margin-top: 60px;
-      margin-bottom: 60px;
-
-    &__list {
-      padding: 0px; /* Supprime les espacements par défaut */
-    }
-  
-    &__link {
-      display: block; /* Pour que chaque lien soit sur une ligne séparée */ /* Couleur du texte en bleu */
-      color: #114DC6;
-      padding: 10px;
-    }
-    &__title {
-        font-size: 16px; /* Taille de police */
-        font-weight: bold; /* Gras */
-        margin-bottom: 10px; /* Espacement en bas */
-      }
-
-
-  }
-  
-
-
-
-.information-debunk{
-
-    &__list {
-        list-style-type: none; 
-        padding: 0; 
-        max-width: 700px;
-    }
-    &__item {
-        margin-bottom: 30px;
-    }
-    &__explanation {
-        border: 1px solid black; 
-        background-color: #F5F5F5; 
-        padding: 20px; 
-        max-width: 700px;
-    }
-    &__explanation__el {
-        padding-bottom: 10px; 
-    }
-
+.highlight {
+  font-weight: bold;
+}
+.blue {
+  color: blue;
 }
 
 
-.information-links {
-  margin-top: 30px;
+.information__paragraph {
+  font-size: 21px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+
+.information-warning {
+  margin: 10px;
+  margin-top: 60px;
+  margin-bottom: 60px;
+  font-weight: bold;
+  font-size: 21px;
+  background-color: #FCE9E9;
+  padding: 20px;
+  border: 0.5px solid #8D0000;
+  box-shadow: 0 0 0 15px rgb(255, 255, 255), 0 0 0 16px #C40000;
+}
+
+
+.information-textbox {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  background-color: #F5F5F5;
+  padding: 20px;
+  font-size: 12px;
+  border: 1px solid black;
+
+  &__title {
+    display: inline-block;
+    padding: 10px;
+    font-weight: bold;
+  }
+
+  &__p {
+    font-weight: bold;
+    padding-bottom: 20px;
+  }
+
+  &__img {
+    display: block;
+    margin: 0 auto;
+  }
+
+  &__a {
+    color: #114DC6;
+    font-size: 16px;
+    display: flex;
+    justify-content: start;
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+}
+
+
+
+
+
+
+.information-otherlinks {
+  background-color: #F5F5F5;
+  border: 1px solid;
+  padding: 30px;
+  margin: 20px;
+  margin-top: 60px;
+  margin-bottom: 60px;
+
+  &__list {
+    padding: 0;
+    padding-left: 20px;
+  }
 
   &__link {
-    margin-bottom: 30px; 
+    font-size: 12px;
+    display: block;
+    color: #114DC6;
+    padding: 10px;
+   
+  }
+
+  &__title {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+}
+
+
+
+.information {
+
+  &__title {
+    background-color: #E9F1FC;
+    padding: 10px;
+    border: 1px solid black;
+    max-width: 80vh;
+    margin-bottom: 40px;
+  }
+
+
+  }
+
+  .information-history{
+ 
+    margin-top: 40px;
+    margin-bottom: 100px;
+
+    }
+  
+
+
+
+
+  .information-identity {
+    border: 1px solid;
+    padding: 30px;
+    background-color: #F5F5F5;
+    max-width: 400px;
+  
+    &__title {
+      text-align: center;
+      font-size: 12px;
+      margin-bottom: 20px;
+    }
+  
+    &__list {
+      list-style-type: none;
+      padding: 0;
+    }
+  
+    &__item {
+      font-size: 12px;
+      margin-bottom: 10px;
+    }
+  
+    &__image {
+      padding: 10%;
+      max-width: 100%; /* La largeur maximale de l'image est de 100% du conteneur */
+      height: auto; /* La hauteur s'ajustera automatiquement pour conserver les proportions de l'image */
+      display: block;
+      margin: 0 auto;
+    }
+  }
+  
+
+
+
+
+.information-debunk {
+  &__list {
+    list-style-type: none;
+    padding: 0;
+    margin-top: 30px;
+    margin-bottom: 60px;
+
+
+
+  }
+  
+  &__item {
+    margin-bottom: 40px;
+    font-size: 16px;
+ 
+  }
+}
+
+
+
+
+
+
+
+.information-links {
+  margin-top: 60px;
+  
+  &__item {
+    margin-top: 30px;
+    margin-bottom: 30px;
+  }
+
+  &__link {
+    font-size: 16px;
+    margin-bottom: 30px;
     text-decoration: none;
     color: #114DC6;
     text-decoration: underline;
@@ -151,41 +197,69 @@
 
   &__list {
     list-style-type: none;
-    padding: 0px;
+    padding: 0;
 
-    &__item {
-      margin: 30px; 
-    }
 
- 
-    &__link + &__link {
-      margin-top: 30px;
-    }
+
   }
+
+  &__link + &__link {
+    margin-top: 30px;
+  }
+
+
 }
 
 
 
 
 
-/* Define the grid layout for desktop screens */
-@media only screen and (min-width: 768px) {
-  /* styles.css */
 
-  /* Grid Layout */
-  .informations {
-    display: grid; 
-    grid-template-columns: 1fr 1fr; /* Les colonnes restent fixes */
-    grid-template-rows: minmax(auto, auto) minmax(auto, auto) minmax(auto, auto) minmax(auto, auto) minmax(auto, auto); /* Les lignes s'adaptent en hauteur */
-    gap: 1px 10vh; 
-    grid-template-areas: 
-    "grid-case2 grid-case1"
-    "grid-case2 grid-case3"
-    "grid-case4 grid-case5"
-    "grid-case4 grid-case5"
-    "grid-case6 grid-case7";
+
+
+
+
+
+
+
+
+
+
+
+/* Medias */
+
+
+@media only screen and (min-width: 768px) {
+  .information-history,
+  .information-debunk,
+  .information-warning {
+    font-size: 27px;
   }
 
+
+
+
+
+
+
+
+
+
+
+  .informations {
+    display: grid; 
+    grid-template-columns: auto auto;
+    grid-template-rows: auto auto auto auto auto auto auto; 
+    gap: 100px; 
+    grid-template-areas: 
+      "grid-case2 grid-case1"
+      "grid-case2 grid-case3"
+      "grid-case2 grid-case3"
+      "grid-case4 grid-case5"
+      "grid-case6 grid-case7"
+      "grid-case8 grid-case9"
+      "grid-case10 grid-case11"; 
+  }
   .grid-case2 { grid-area: grid-case2; }
   .grid-case1 { grid-area: grid-case1; }
   .grid-case3 { grid-area: grid-case3; }
@@ -193,23 +267,12 @@
   .grid-case5 { grid-area: grid-case5; }
   .grid-case6 { grid-area: grid-case6; }
   .grid-case7 { grid-area: grid-case7; }
-  /* Additional styling for grid items if needed */
+  .grid-case8 { grid-area: grid-case8; }
+  .grid-case9 { grid-area: grid-case9; }
+  .grid-case10 { grid-area: grid-case10; }
+  .grid-case11 { grid-area: grid-case11; }
 
 
 
 
-
-
-
-
-
-
-
-  
-.information-history,
-.information-debunk,
-.information-warning {
-   font-size: 27px;
-
-  }
 }
