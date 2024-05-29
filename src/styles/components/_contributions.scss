@@ -8,39 +8,42 @@
     margin-bottom: 1em;
 
     &-select {
-      appearance: none; /* Supprime les styles par défaut du navigateur */
+      appearance: none;
       background-color: #f5f5f5;
       border: 1px solid #000000;
       padding: 0.5em;
       font-size: 1em;
-      width: 200px; /* Pour occuper toute la largeur du conteneur */
+      width: 200px;
       position: relative;
 
       &::after {
-        content: '\25BE'; /* Utilisation du caractère unicode pour afficher une flèche vers le bas */
+        content: '';
         position: absolute;
         top: 50%;
         right: 10px;
         transform: translateY(-50%);
-        pointer-events: none; /* Empêche la sélection du caractère */
+        pointer-events: none;
+        width: 10px;
+        height: 10px;
+        background-image: url('../../assets/images/arrowdown.svg'); 
+        background-size: contain;
+        background-repeat: no-repeat;
       }
 
       &:focus {
-        outline: none; /* Supprime le contour de sélection */
-
+        outline: none;
       }
 
-      option {
-        appearance: none;
-        // Styles de base pour les options
-        padding: 0.5em; // Ajoute du rembourrage aux options
-        transition: background-color 0.3s; // Transition pour l'effet de survol
+      &-option {
 
-        // Styles pour le survol
-        &:hover {
-          background-color: red; // Couleur de fond au survol
-          color: white; // Couleur du texte au survol
-        }
+      background-color: #fff;
+      color: #000;
+      padding: 0.5em;
+      cursor: pointer;
+      border: none;
+      appearance: none;
+      -webkit-appearance: none; 
+      -moz-appearance: none;
       }
     }
   }
