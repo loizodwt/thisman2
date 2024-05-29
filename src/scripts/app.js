@@ -2,6 +2,7 @@
 
 document.addEventListener('DOMContentLoaded', function() {
 
+    
     //report passer les sections et localstorage, recup image combiner
     var sections = document.querySelectorAll(".report-section");
     for (var i = 1; i < sections.length; i++) {

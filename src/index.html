@@ -9,23 +9,32 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="styles/app.css">
   <script src="scripts/app.js" defer></script>
+
 </head>
 <body>
+
 
   <header>
     <nav class="nav">
       <a href="./index.html" class="nav__title-link">
         <h1 class="nav__title">This man</h1>
       </a>
+      <input type="checkbox" id="menu-toggle" class="menu-toggle">
+      <label for="menu-toggle" class="menu-icon">
+        ☰
+      </label>
       <ul class="nav__list">
         <li class="nav__item"><a href="./report.html" class="nav__link"><span class="blue-underline">Your Report</span></a></li>
         <li class="nav__item"><a href="./othercontributions.html" class="nav__link">Other Contributions</a></li>
         <li class="nav__item"><a href="./informations.html" class="nav__link">Informations</a></li>
         <li class="nav__item"><a href="./about_us.html" class="nav__link">Contact Us</a></li>
       </ul>
+      <label for="menu-toggle" class="close-icon">
+        ×
+      </label>
     </nav>
   </header>
-  
+
   <section class="section1">
     <div class="section1-content">
       <h2 class="section1_title">Ever Dream of <span class="bold">This Man</span>?</h2>
