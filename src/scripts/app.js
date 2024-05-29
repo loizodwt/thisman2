@@ -1,11 +1,15 @@
 "use strict";
 
 document.addEventListener('DOMContentLoaded', function() {
+
+    //report passer les sections et localstorage, recup image combiner
     var sections = document.querySelectorAll(".report-section");
     for (var i = 1; i < sections.length; i++) {
         sections[i].style.display = "none";
     }
 
+
+   
     var nextButtons = document.querySelectorAll(".thisman__button--next");
     nextButtons.forEach(function(button, index) {
         button.addEventListener("click", function() {
@@ -43,6 +47,8 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
+//recup du local storage pr afficher
+
     var recapSection = document.querySelector(".section_5_recap");
     if (recapSection) {
         var savedReportText = localStorage.getItem('reportText');
@@ -64,7 +70,7 @@ document.addEventListener('DOMContentLoaded', function() {
             recapSection.querySelector('.recap-image--appearance .content').appendChild(img);
         }
     }
-
+// combine canvas et vetements pour les mettre dans le recap
     function createCombinedImage() {
         const canvas = document.createElement('canvas');
         const ctx = canvas.getContext('2d');
@@ -89,7 +95,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         return canvas.toDataURL();
     }
-
+// canvas responsive
     const canvas = document.getElementById('canvas');
     const ctx = canvas.getContext('2d');
 
@@ -109,7 +115,8 @@ document.addEventListener('DOMContentLoaded', function() {
         canvas.width = newWidth;
         canvas.height = newHeight;
     }
-
+    
+// paint
     window.addEventListener("resize", resizeCanvas);
 
     const drawRadio = document.getElementById('drawRadio');
@@ -244,7 +251,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
 
-        // Update the body part's background image
+        // Update le body
         let bodyTarget = imageContainer.getAttribute("data-target");
         let bodyTargetElement = document.getElementById(bodyTarget);
         if (currentImage && bodyTargetElement) {
@@ -262,7 +269,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
 });
 
-/////TESITONIES
+//deroulant
 
 const dropdown = document.querySelector('.section1-contribution__dropdown-select');
 const contents = document.querySelectorAll('.section1-contribution__content');
@@ -284,4 +291,3 @@ dropdown.addEventListener('change', updateContentVisibility);
 
 updateContentVisibility();
 
-/////TESITONIES
