@@ -10,7 +10,7 @@ body {
 
 .section1-card {
   padding: 5px;
-  max-width: 350px; // Augmentez la largeur maximale de la carte selon vos besoins
+  max-width: 350px; 
   margin: 30px auto;
   background-color: #F5F5F5;
 
@@ -36,7 +36,7 @@ body {
 .section1 {
 
   display: flex;
-  flex-direction: column; // Met en colonne pour mobile
+  flex-direction: column;
 
 
   &-paragraph,
@@ -79,10 +79,10 @@ body {
   }
 
   .section1-description{
-    text-align: center; // Pour centrer le contenu horizontalement
-    background-color: #F5F5F5; // Arrière-plan de la section
-    margin: 30px auto; // Pour centrer la boîte horizontalement
-    max-width: 400px; // Largeur maximale de la boîte
+    text-align: center; 
+    background-color: #F5F5F5; 
+    margin: 30px auto; 
+    max-width: 400px; 
     padding: 20px; 
     padding-left: 30px;
     padding-right: 30px;
@@ -90,8 +90,8 @@ body {
     border: 1px solid black; 
   
     &__title {
-      display: inline-block; // Permettre la gestion de la largeur et du centrage
-      padding: 10px; // Ajouter un peu de marge autour du titre
+      display: inline-block; 
+      padding: 10px;
       font-weight: bold;
     }
     &__p{
@@ -108,7 +108,7 @@ body {
     flex-direction: column;
   
     &__paragraph {
-      margin-bottom: 20px; // Espacement entre le paragraphe et le bouton
+      margin-bottom: 20px; 
     }
   
     &__button {
@@ -133,7 +133,7 @@ body {
   .thisman__button {
     font-family: 'Times New Roman', Times, serif;
     font-size: 20px;
-    cursor: pointer; // Curseur pointeur au survol
+    cursor: pointer; 
     padding: 10px;
     margin: 10px;
     border-radius: 3px;
