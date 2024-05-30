@@ -168,51 +168,97 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     function onPaint(mouse) {
+      if( isDrawing ){
+
         if (mode === 'erase') {
-            ctx.globalCompositeOperation = 'destination-out';
+          ctx.globalCompositeOperation = 'destination-out';
         } else {
-            ctx.globalCompositeOperation = 'source-over';
-            ctx.strokeStyle = currentColor;
-            ctx.lineWidth = currentSize;
+          ctx.globalCompositeOperation = 'source-over';
+          ctx.strokeStyle = currentColor;
+          ctx.lineWidth = currentSize;
         }
         ctx.lineTo(mouse.x, mouse.y);
         ctx.stroke();
+      }
     }
 
     resizeCanvas();
 
     const mouse = { x: 0, y: 0 };
 
+    const updateMouse = ( e ) => {
+      const isTouched = e.changedTouches === undefined ? false : true;
+
+      if( isTouched ){
+          mouse.x = e.changedTouches[0].clientX - canvas.offsetLeft;
+          mouse.y = e.changedTouches[0].clientY - canvas.offsetTop;
+      } else {
+        console.log(e.pageX, canvas.offsetLeft);
+          mouse.x = e.pageX - canvas.offsetLeft;
+          mouse.y = e.pageY - canvas.offsetTop;
+      }
+
+      console.log(mouse);
+
+      if( e.type === "touchstart" || e.type === "mousedown" ){
+        isDrawing = true;
+        ctx.beginPath();
+        ctx.moveTo(mouse.x, mouse.y);
+        
+      } else if( e.type === 'touchend' || e.type === "mouseup" ){
+        isDrawing = false;
+
+      } else if( e.type === 'touchmove' || e.type === "mousemove" ){
+        if (isDrawing) {
+            onPaint(mouse);
+        }
+    }
+     
+    };
+
+    canvas.addEventListener('mousedown', updateMouse );
+    canvas.addEventListener('mousemove', updateMouse );
+    canvas.addEventListener('mouseup', updateMouse );
+    canvas.addEventListener('touchstart', updateMouse );
+    canvas.addEventListener('touchmove', updateMouse );
+    canvas.addEventListener('touchend', updateMouse );
+
+    /*
     canvas.addEventListener('mousemove', function(e) {
+      console.log(isDrawing);
         mouse.x = e.pageX - this.offsetLeft;
         mouse.y = e.pageY - this.offsetTop;
         if (isDrawing) {
             onPaint(mouse);
         }
     });
+    
 
-    canvas.addEventListener('mousedown', function(e) {
-        isDrawing = true;
-        ctx.beginPath();
-        ctx.moveTo(mouse.x, mouse.y);
-        canvas.addEventListener('mousemove', function() {
-            onPaint(mouse);
-        });
-    });
+    // canvas.addEventListener('mousedown', function(e) {
+    //     isDrawing = true;
+    //     ctx.beginPath();
+    //     ctx.moveTo(mouse.x, mouse.y);
+    //     canvas.addEventListener('mousemove', function() {
+    //         onPaint(mouse);
+    //     });
+    // });
 
-    canvas.addEventListener('mouseup', function() {
-        isDrawing = false;
-        canvas.removeEventListener('mousemove', function() {
-            onPaint(mouse);
-        });
-    });
+    // canvas.addEventListener('mouseup', function() {
+    //     isDrawing = false;
+    //     console.log(isDrawing);
+    //     canvas.removeEventListener('mousemove', function() {
+    //         onPaint(mouse);
+    //     });
+    // });
 
-    canvas.addEventListener('mouseleave', function() {
-        isDrawing = false;
-        canvas.removeEventListener('mousemove', function() {
-            onPaint(mouse);
-        });
-    });
+    // canvas.addEventListener('mouseleave', function() {
+    //     isDrawing = false;
+    //     /*
+    //     canvas.removeEventListener('mousemove', function() {
+    //         onPaint(mouse);
+    //     });
+    //     */
+    // });
 
 
     // Images clothes

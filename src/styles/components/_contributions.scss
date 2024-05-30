@@ -4,8 +4,29 @@
     margin-bottom: 0.5em;
   }
 
+  &__label{
+    
+    
+    display: inline-block;
+    white-space: nowrap;
+    text-indent: 100%;
+    overflow: hidden;
+    pointer-events: none;
+    width: 30px;
+    height: 30px;
+    background-image: url('../../assets/images/arrowdown.svg'); 
+    background-size: contain;
+    background-repeat: no-repeat;
+    position: absolute;
+    left: 167px;
+    top: 9px;
+    z-index: 10;
+  }
+
   &__dropdown {
     margin-bottom: 1em;
+    position: relative;
+    
 
     &-select {
       appearance: none;
@@ -17,20 +38,7 @@
       position: relative;
       border-radius: 0px;
     
-      &::after {
-        content: '';
-        position: absolute;
-        top: 50%;
-        right: 10px;
-        transform: translateY(-50%);
-        pointer-events: none;
-        width: 10px;
-        height: 10px;
-        background-image: url('../../assets/images/arrowdown.svg'); 
-        background-size: contain;
-        background-repeat: no-repeat;
-        
-      }
+       
 
       &:focus {
         outline: none;
