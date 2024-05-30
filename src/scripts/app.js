@@ -3,27 +3,34 @@
 document.addEventListener('DOMContentLoaded', function() {
 
     
-    //report passer les sections et localstorage, recup image combiner
+    // Récupérer toutes les sections du rapport
     var sections = document.querySelectorAll(".report-section");
+
+    // Cacher toutes les sections sauf la première
     for (var i = 1; i < sections.length; i++) {
         sections[i].style.display = "none";
     }
 
-
-   
+    // Récupérer les boutons "Next"
     var nextButtons = document.querySelectorAll(".thisman__button--next");
+
+    // Ajouter un gestionnaire d'événement à chaque bouton "Next"
     nextButtons.forEach(function(button, index) {
         button.addEventListener("click", function() {
+            // Récupérer le texte du rapport et le sauvegarder dans le stockage local
             var reportText = document.getElementById('report-text').value;
             localStorage.setItem('reportText', reportText);
 
+            // Récupérer les données du canvas et les sauvegarder dans le stockage local
             var canvas = document.getElementById('canvas');
             var canvasData = canvas.toDataURL();
             localStorage.setItem('canvasImage', canvasData);
 
+            // Créer une image combinée et la sauvegarder dans le stockage local
             var combinedImage = createCombinedImage();
             localStorage.setItem('combinedImage', combinedImage);
 
+            // Afficher les données sauvegardées dans la section de récapitulatif
             var recapSection = document.querySelector(".section_5_recap");
             if (recapSection) {
                 recapSection.querySelector('.recap-image--testimony .content').textContent = reportText;
@@ -33,12 +40,17 @@ document.addEventListener('DOMContentLoaded', function() {
                 recapSection.querySelector('.recap-image--portrait .content').innerHTML = '';
                 recapSection.querySelector('.recap-image--portrait .content').appendChild(img1);
 
-                var img2 = new Image();
-                img2.src = combinedImage;
-                recapSection.querySelector('.recap-image--appearance .content').innerHTML = '';
-                recapSection.querySelector('.recap-image--appearance .content').appendChild(img2);
+                // Créer une grille pour les images de vêtements dans la section de récapitulatif
+                var recapImages = recapSection.querySelector('.recap-image--appearance .content');
+                recapImages.innerHTML = ''; // Clear the content
+                
+                var images = createGridImages();
+                images.forEach(image => {
+                    recapImages.appendChild(image);
+                });
             }
 
+            // Passer à la prochaine section
             sections[index].style.display = "none"; 
             if (index + 1 < sections.length) {
                 sections[index + 1].style.display = "block"; 
@@ -48,8 +60,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-//recup du local storage pr afficher
-
+    // Récupérer les données sauvegardées dans le stockage local et les afficher dans la section de récapitulatif
     var recapSection = document.querySelector(".section_5_recap");
     if (recapSection) {
         var savedReportText = localStorage.getItem('reportText');
@@ -64,14 +75,62 @@ document.addEventListener('DOMContentLoaded', function() {
             recapSection.querySelector('.recap-image--portrait .content').appendChild(img);
         }
 
-        var savedCombinedImage = localStorage.getItem('combinedImage');
-        if (savedCombinedImage) {
-            var img = new Image();
-            img.src = savedCombinedImage;
-            recapSection.querySelector('.recap-image--appearance .content').appendChild(img);
-        }
+        // Créer une grille pour les images de vêtements dans la section de récapitulatif
+        var recapImages = recapSection.querySelector('.recap-image--appearance .content');
+        recapImages.innerHTML = ''; // Clear the content
+        
+        var images = createGridImages();
+        images.forEach(image => {
+            recapImages.appendChild(image);
+        });
     }
-// combine canvas et vetements pour les mettre dans le recap
+
+    // Fonction pour créer une image combinée à partir du canvas et des vêtements sélectionnés
+    function createCombinedImage() {
+        const canvas = document.createElement('canvas');
+        const ctx = canvas.getContext('2d');
+        const images = [];
+
+        const bodyParts = ['tm_top', 'tm_bottom', 'tm_shoes', 'tm_accessoiries'];
+        bodyParts.forEach(part => {
+            const activeImage = document.querySelector(`.grid__item-images[data-target="${part}"] .grid__item-image.active`);
+            if (activeImage) {
+                images.push(activeImage);
+            }
+        });
+
+        canvas.width = 400;
+        canvas.height = 400;
+
+        let yOffset = 0;
+        images.forEach((image, index) => {
+            ctx.drawImage(image, 0, yOffset, canvas.width, canvas.height / images.length);
+            yOffset += canvas.height / images.length;
+        });
+
+        return canvas.toDataURL();
+    }
+
+    // Fonction pour créer une grille d'images de vêtements pour la section de récapitulatif
+    function createGridImages() {
+        const images = [];
+        const bodyParts = ['tm_top', 'tm_bottom', 'tm_shoes', 'tm_accessoiries'];
+        bodyParts.forEach(part => {
+            const activeImage = document.querySelector(`.grid__item-images[data-target="${part}"] .grid__item-image.active`);
+            if (activeImage) {
+                const image = new Image();
+                image.src = activeImage.src;
+                if (part === 'tm_top' || part === 'tm_bottom') {
+                    image.classList.add('left');
+                } else {
+                    image.classList.add('right');
+                }
+                images.push(image);
+            }
+        });
+        return images;
+    }
+    // Fonction pour créer une image combinée à partir du canvas et des vêtements sélectionnés
     function createCombinedImage() {
         const canvas = document.createElement('canvas');
         const ctx = canvas.getContext('2d');
@@ -125,7 +184,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const colorPicker = document.getElementById('colorPicker');
     const sizeSlider = document.getElementById('sizeSlider');
     const clearBtn = document.getElementById('clearBtn');
-    const fileInput = document.getElementById('fileInput');
+  
 
     let isDrawing = false;
     let mode = 'draw';
@@ -163,9 +222,6 @@ document.addEventListener('DOMContentLoaded', function() {
         currentSize = parseInt(sizeSlider.value);
     });
 
-    fileInput.addEventListener('change', function(event) {
-        const file = event.target.files[0];
-    });
 
     function onPaint(mouse) {
       if( isDrawing ){
@@ -265,7 +321,24 @@ document.addEventListener('DOMContentLoaded', function() {
     const arrowLeftButtons = document.querySelectorAll('.grid__arrow--left');
     const arrowRightButtons = document.querySelectorAll('.grid__arrow--right');
 
-    arrowLeftButtons.forEach(function(button) {
+    // Afficher les premiers vêtements actifs sur le corps
+    const initialImageContainers = document.querySelectorAll('.grid__item-images');
+    initialImageContainers.forEach(function(container) {
+        const initialActiveImage = container.querySelector('.grid__item-image.active');
+        if (initialActiveImage) {
+            updateBodyWithImage(initialActiveImage, container);
+        }
+    });
+
+    function updateBodyWithImage(image, container) {
+        const bodyTarget = container.getAttribute("data-target");
+        const bodyTargetElement = document.getElementById(bodyTarget);
+        if (image && bodyTargetElement) {
+            bodyTargetElement.style.backgroundImage = 'url(' + image.src + ')';
+        }
+    }
+
+   arrowLeftButtons.forEach(function(button) {
         button.addEventListener('click', function() {
             changeImage(this.parentNode.parentNode.querySelector('.grid__item-images'), 'previous');
         });
@@ -288,6 +361,8 @@ document.addEventListener('DOMContentLoaded', function() {
             newIndex = (currentIndex + 1) % imageCount;
         } else if (direction === 'previous') {
             newIndex = (currentIndex - 1 + imageCount) % imageCount;
+        } else {
+            return; 
         }
 
         images.forEach((image, index) => {
@@ -298,16 +373,8 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
 
-        // Update le body
-        let bodyTarget = imageContainer.getAttribute("data-target");
-        let bodyTargetElement = document.getElementById(bodyTarget);
-        if (currentImage && bodyTargetElement) {
-            bodyTargetElement.style.backgroundImage = 'url(' + currentImage.src + ')';
-        }
+        updateBodyWithImage(currentImage, imageContainer);
     }
-
-
-
 
 
 
