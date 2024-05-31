@@ -243,10 +243,12 @@
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(1fr, 1fr));
     gap: 20px;
+    padding-bottom: 30px;
 
     
     @media screen and (min-width: 768px) {
       grid-template-columns: 50% 1fr 1fr;
+      padding-bottom: 0px;
     }
 
     &__body-image {
@@ -257,7 +259,11 @@
 
     &__item {
      
-      padding: 10px;
+      padding: 0px;
+   
+      @media screen and (min-width: 768px) {
+        padding: 10px;
+         }
 
       &-title {
         display: flex;
@@ -343,7 +349,11 @@
 /* HEAD */
 
 .section4-clothes {
-  padding: 20px;
+  padding: 0px;
+
+  @media screen and (min-width: 768px) {
+    padding: 20px;
+  }
   & .grid__item--body {
     position: relative;
   }
@@ -473,7 +483,7 @@
     .recap-content {
       display: grid;
       grid-template-columns: 80% auto;
-      grid-gap: 20px;
+      grid-gap: 0px;
       margin: 0 auto;
 
       .recap-details {
