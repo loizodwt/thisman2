@@ -210,6 +210,7 @@
 
 .information-links {
   margin-top: 60px;
+  display: block;
   margin: 0 auto;
   
   &__item {
@@ -226,6 +227,9 @@
   }
 
   &__list {
+    display: block;
+    max-width: 500px;
+    margin: 0 auto;
     list-style-type: none;
     padding: 0;
 
@@ -251,14 +255,6 @@
 }
 
 
-
-.grid-case11 {
-  display: block;
-  margin: 0 auto;
-  
-
-
-}
 
 
 
@@ -339,9 +335,30 @@
   
 
     }
- 
-  }
+    
+    &__item {
+      font-size: 20px;
+   
+    }
 
+  }
+  
+.information-links {
+
+  &__link {
+    font-size: 27px;
+
+  }
+}
+
+
+
+
+}
+
+
+ 
+  
 
 
 
@@ -350,13 +367,26 @@
     margin-top: 50px;
     margin-bottom: 60px;
 
+    &__link {
+      font-size: 16px;
+
+    }
+  
+    &__title {
+      font-size: 20px;
+
+    }
+
 
   }
   .information-identity {
     margin: 0 auto;
 }
 
-  
+.information-identity__item {
+  font-size: 16px;
+}
+
   .information-identity__image {
     padding: 0;
     padding-bottom: 60px;
@@ -369,4 +399,4 @@
 
 
 
-}
+
