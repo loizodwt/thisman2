@@ -130,31 +130,8 @@ document.addEventListener('DOMContentLoaded', function() {
         });
         return images;
     }
-    // Fonction pour créer une image combinée à partir du canvas et des vêtements sélectionnés
-    function createCombinedImage() {
-        const canvas = document.createElement('canvas');
-        const ctx = canvas.getContext('2d');
-        const images = [];
 
-        const bodyParts = ['tm_top', 'tm_bottom', 'tm_shoes', 'tm_accessoiries'];
-        bodyParts.forEach(part => {
-            const activeImage = document.querySelector(`.grid__item-images[data-target="${part}"] .grid__item-image.active`);
-            if (activeImage) {
-                images.push(activeImage);
-            }
-        });
-
-        canvas.width = 400;
-        canvas.height = 400;
-
-        let yOffset = 0;
-        images.forEach((image, index) => {
-            ctx.drawImage(image, 0, yOffset, canvas.width, canvas.height / images.length);
-            yOffset += canvas.height / images.length;
-        });
-
-        return canvas.toDataURL();
-    }
+    
 // canvas responsive
     const canvas = document.getElementById('canvas');
     const ctx = canvas.getContext('2d');
@@ -165,8 +142,8 @@ document.addEventListener('DOMContentLoaded', function() {
         const isMobile = window.matchMedia("(max-width: 767px)").matches;
 
         if (isMobile) {
-            newWidth = 300;
-            newHeight = 400;
+            newWidth = 250;
+            newHeight = 300;
         } else {
             newWidth = 500;
             newHeight = 400;
@@ -243,33 +220,31 @@ document.addEventListener('DOMContentLoaded', function() {
     const mouse = { x: 0, y: 0 };
 
     const updateMouse = ( e ) => {
-      const isTouched = e.changedTouches === undefined ? false : true;
+        const isTouched = e.changedTouches !== undefined;
 
-      if( isTouched ){
-          mouse.x = e.changedTouches[0].clientX - canvas.offsetLeft;
-          mouse.y = e.changedTouches[0].clientY - canvas.offsetTop;
-      } else {
-        console.log(e.pageX, canvas.offsetLeft);
-          mouse.x = e.pageX - canvas.offsetLeft;
-          mouse.y = e.pageY - canvas.offsetTop;
-      }
-
-      console.log(mouse);
-
-      if( e.type === "touchstart" || e.type === "mousedown" ){
-        isDrawing = true;
-        ctx.beginPath();
-        ctx.moveTo(mouse.x, mouse.y);
-        
-      } else if( e.type === 'touchend' || e.type === "mouseup" ){
-        isDrawing = false;
-
-      } else if( e.type === 'touchmove' || e.type === "mousemove" ){
-        if (isDrawing) {
-            onPaint(mouse);
+        if (isTouched) {
+            mouse.x = e.changedTouches[0].clientX - canvas.offsetLeft;
+            mouse.y = e.changedTouches[0].clientY - canvas.offsetTop;
+        } else {
+            mouse.x = e.pageX - canvas.offsetLeft;
+            mouse.y = e.pageY - canvas.offsetTop;
         }
-    }
-     
+    
+        if (e.type === "touchstart" || e.type === "mousedown") {
+            isDrawing = true;
+            ctx.beginPath();
+            ctx.moveTo(mouse.x, mouse.y);
+        } else if (e.type === 'touchend' || e.type === "mouseup") {
+            isDrawing = false;
+        } else if (e.type === 'touchmove' || e.type === "mousemove") {
+            if (isDrawing) {
+                onPaint(mouse);
+            }
+        }
+    
+        if (isTouched && isDrawing) {
+            e.preventDefault();
+        }
     };
 
     canvas.addEventListener('mousedown', updateMouse );
@@ -279,43 +254,7 @@ document.addEventListener('DOMContentLoaded', function() {
     canvas.addEventListener('touchmove', updateMouse );
     canvas.addEventListener('touchend', updateMouse );
 
-    /*
-    canvas.addEventListener('mousemove', function(e) {
-      console.log(isDrawing);
-        mouse.x = e.pageX - this.offsetLeft;
-        mouse.y = e.pageY - this.offsetTop;
-        if (isDrawing) {
-            onPaint(mouse);
-        }
-    });
-    
-
-    // canvas.addEventListener('mousedown', function(e) {
-    //     isDrawing = true;
-    //     ctx.beginPath();
-    //     ctx.moveTo(mouse.x, mouse.y);
-    //     canvas.addEventListener('mousemove', function() {
-    //         onPaint(mouse);
-    //     });
-    // });
-
-    // canvas.addEventListener('mouseup', function() {
-    //     isDrawing = false;
-    //     console.log(isDrawing);
-    //     canvas.removeEventListener('mousemove', function() {
-    //         onPaint(mouse);
-    //     });
-    // });
-
-    // canvas.addEventListener('mouseleave', function() {
-    //     isDrawing = false;
-    //     /*
-    //     canvas.removeEventListener('mousemove', function() {
-    //         onPaint(mouse);
-    //     });
-    //     */
-    // });
-
+   
 
     // Images clothes
     const arrowLeftButtons = document.querySelectorAll('.grid__arrow--left');
