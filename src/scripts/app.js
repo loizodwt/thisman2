@@ -158,129 +158,123 @@ document.addEventListener('DOMContentLoaded', function() {
     
     
 // paint
-    window.addEventListener("resize", resizeCanvas);
-    
+window.addEventListener("resize", resizeCanvas);
 
-    const drawRadio = document.getElementById('drawRadio');
-    const eraseRadio = document.getElementById('eraseRadio');
-    const colorPicker = document.getElementById('colorPicker');
-    const sizeSlider = document.getElementById('sizeSlider');
-    const clearBtn = document.getElementById('clearBtn');
-  
+const drawRadio = document.getElementById('drawRadio');
+const eraseRadio = document.getElementById('eraseRadio');
+const colorPicker = document.getElementById('colorPicker');
+const sizeSlider = document.getElementById('sizeSlider');
+const clearBtn = document.getElementById('clearBtn');
 
-    let isDrawing = false;
-    let mode = 'draw';
-    let currentColor = '#000000';
-    let currentSize = 3;
+let isDrawing = false;
+let mode = 'draw';
+let currentColor = '#000000';
+let currentSize = 3;
 
-    function changeMode(newMode) {
-        mode = newMode;
-        if (mode === 'erase') {
-            currentColor = '#ffffff';
-        } else {
-            currentColor = colorPicker.value;
-        }
-    }
-
-    function clearCanvas() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-    }
-
-    clearBtn.addEventListener('click', clearCanvas);
-
-    drawRadio.addEventListener('change', function() {
-        changeMode('draw');
-    });
-
-    eraseRadio.addEventListener('change', function() {
-        changeMode('erase');
-    });
-
-    colorPicker.addEventListener('change', function() {
+function changeMode(newMode) {
+    mode = newMode;
+    if (mode === 'erase') {
+        currentColor = '#ffffff';
+    } else {
         currentColor = colorPicker.value;
-    });
+    }
+}
 
-    sizeSlider.addEventListener('input', function() {
-        currentSize = parseInt(sizeSlider.value);
-    });
+function clearCanvas() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+}
+
+clearBtn.addEventListener('click', clearCanvas);
+
+drawRadio.addEventListener('change', function() {
+    changeMode('draw');
+});
+
+eraseRadio.addEventListener('change', function() {
+    changeMode('erase');
+});
+
+colorPicker.addEventListener('change', function() {
+    currentColor = colorPicker.value;
+});
+
+sizeSlider.addEventListener('input', function() {
+    currentSize = parseInt(sizeSlider.value);
+});
 
 
-    function onPaint(mouse) {
-      if( isDrawing ){
-
+function onPaint(mouse) {
+    if (isDrawing) {
         if (mode === 'erase') {
-          ctx.globalCompositeOperation = 'destination-out';
+            ctx.globalCompositeOperation = 'destination-out';
         } else {
-          ctx.globalCompositeOperation = 'source-over';
-          ctx.strokeStyle = currentColor;
-          ctx.lineWidth = currentSize;
+            ctx.globalCompositeOperation = 'source-over';
+            ctx.strokeStyle = currentColor;
+            ctx.lineWidth = currentSize;
         }
         ctx.lineTo(mouse.x, mouse.y);
         ctx.stroke();
-      }
+    }
+}
+
+resizeCanvas();
+
+const mouse = { x: 0, y: 0 };
+
+const updateMouse = (e) => {
+    const isTouched = e.changedTouches !== undefined;
+    const isMobile = window.innerWidth < 768; // Check if the device is mobile
+
+    if (isTouched || isMobile) { // Disable scrolling on touch or mobile devices
+        mouse.x = e.changedTouches[0].pageX - canvas.offsetLeft;
+        mouse.y = e.changedTouches[0].pageY - canvas.offsetTop;
+        document.body.style.overflow = 'hidden'; // Prevent scrolling
+    } else {
+        mouse.x = e.pageX - canvas.offsetLeft;
+        mouse.y = e.pageY - canvas.offsetTop;
     }
 
-    resizeCanvas();
-
-    const mouse = { x: 0, y: 0 };
-
-    const updateMouse = (e) => {
-        const isTouched = e.changedTouches !== undefined;
-
-        if (isTouched) {
-            mouse.x = e.changedTouches[0].pageX - canvas.offsetLeft;
-            mouse.y = e.changedTouches[0].pageY - canvas.offsetTop;
-        } else {
-            mouse.x = e.pageX - canvas.offsetLeft;
-            mouse.y = e.pageY - canvas.offsetTop;
+    if (e.type === "touchstart" || e.type === "mousedown") {
+        isDrawing = true;
+        ctx.beginPath();
+        ctx.moveTo(mouse.x, mouse.y);
+    } else if (e.type === 'touchend' || e.type === "mouseup") {
+        isDrawing = false;
+        ctx.beginPath(); // Begin a new path after the stroke
+        document.body.style.overflow = ''; // Re-enable scrolling
+    } else if (e.type === 'touchmove' || e.type === "mousemove") {
+        if (isDrawing) {
+            onPaint(mouse);
         }
-    
-        if (e.type === "touchstart" || e.type === "mousedown") {
-            isDrawing = true;
-            ctx.beginPath();
-            ctx.moveTo(mouse.x, mouse.y);
-            document.body.style.overflow = 'hidden'; // Prevent scrolling
-        } else if (e.type === 'touchend' || e.type === "mouseup") {
-            isDrawing = false;
-            ctx.beginPath(); // Begin a new path after the stroke
-            document.body.style.overflow = ''; // Re-enable scrolling
-        } else if (e.type === 'touchmove' || e.type === "mousemove") {
-            if (isDrawing) {
-                onPaint(mouse);
-            }
-        }
-    
-        if (isTouched && isDrawing) {
-            e.preventDefault();
-        }
-    };
-
-    function saveCanvasDataOnMove() {
-        saveCanvasDataToReport();
     }
 
-    function saveCanvasDataToReport() {
-        var canvas = document.getElementById('canvas');
-        var canvasData = canvas.toDataURL();
-        localStorage.setItem('canvasImage', canvasData);
+    if (isTouched && isDrawing) {
+        e.preventDefault();
     }
-    canvas.addEventListener('mouseup', saveCanvasDataOnMove);
-    canvas.addEventListener('touchend', saveCanvasDataOnMove);
-    canvas.addEventListener('mousemove', saveCanvasDataOnMove);
-    canvas.addEventListener('touchmove', saveCanvasDataOnMove);
+};
 
- 
+canvas.addEventListener('mouseup', saveCanvasDataOnMove);
+canvas.addEventListener('touchend', saveCanvasDataOnMove);
+canvas.addEventListener('mousemove', saveCanvasDataOnMove);
+canvas.addEventListener('touchmove', saveCanvasDataOnMove);
 
-    // Ajouter les gestionnaires d'événement pour sauvegarder les données du canvas lors du mouvement ou de la levée du curseur/toucher
+function saveCanvasDataOnMove() {
+    saveCanvasDataToReport();
+}
 
+function saveCanvasDataToReport() {
+    var canvas = document.getElementById('canvas');
+    var canvasData = canvas.toDataURL();
+    localStorage.setItem('canvasImage', canvasData);
+}
 
-    canvas.addEventListener('mousedown', updateMouse);
-    canvas.addEventListener('mousemove', updateMouse);
-    canvas.addEventListener('mouseup', updateMouse);
-    canvas.addEventListener('touchstart', updateMouse);
-    canvas.addEventListener('touchmove', updateMouse);
-    canvas.addEventListener('touchend', updateMouse);
-
+// Ajouter les gestionnaires d'événement pour sauvegarder les données du canvas lors du mouvement ou de la levée du curseur/toucher
+canvas.addEventListener('mousedown', updateMouse);
+canvas.addEventListener('mousemove', updateMouse);
+canvas.addEventListener('mouseup', updateMouse);
+canvas.addEventListener('touchstart', updateMouse);
+canvas.addEventListener('touchmove', updateMouse);
+canvas.addEventListener('touchend', updateMouse);
 
 
 

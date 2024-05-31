@@ -57,6 +57,7 @@
         display: grid;
         grid-template-columns: 1fr 1fr;
         grid-gap: 20px;
+        grid-column-gap: 20vw;
         margin-bottom: 60px;
 
         &__group--message-right {
