@@ -113,8 +113,9 @@ document.addEventListener('DOMContentLoaded', function() {
         return canvas.toDataURL();
     }
 
+
     // Fonction pour créer une grille d'images de vêtements pour la section de récapitulatif
-    function createGridImages() {
+  function createGridImages() {
         const images = [];
         const bodyParts = ['tm_top', 'tm_bottom', 'tm_shoes', 'tm_accessoiries'];
         bodyParts.forEach(part => {
@@ -133,9 +134,9 @@ document.addEventListener('DOMContentLoaded', function() {
         return images;
     }
 
-    
+
 // canvas responsive
-    const canvas = document.getElementById('canvas');
+   const canvas = document.getElementById('canvas');
     const ctx = canvas.getContext('2d');
 
     function resizeCanvas() {
@@ -155,8 +156,10 @@ document.addEventListener('DOMContentLoaded', function() {
         canvas.height = newHeight;
     }
     
+    
 // paint
     window.addEventListener("resize", resizeCanvas);
+    
 
     const drawRadio = document.getElementById('drawRadio');
     const eraseRadio = document.getElementById('eraseRadio');
@@ -221,12 +224,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
     const mouse = { x: 0, y: 0 };
 
-    const updateMouse = ( e ) => {
+    const updateMouse = (e) => {
         const isTouched = e.changedTouches !== undefined;
 
         if (isTouched) {
-            mouse.x = e.changedTouches[0].clientX - canvas.offsetLeft;
-            mouse.y = e.changedTouches[0].clientY - canvas.offsetTop;
+            mouse.x = e.changedTouches[0].pageX - canvas.offsetLeft;
+            mouse.y = e.changedTouches[0].pageY - canvas.offsetTop;
         } else {
             mouse.x = e.pageX - canvas.offsetLeft;
             mouse.y = e.pageY - canvas.offsetTop;
@@ -236,8 +239,11 @@ document.addEventListener('DOMContentLoaded', function() {
             isDrawing = true;
             ctx.beginPath();
             ctx.moveTo(mouse.x, mouse.y);
+            document.body.style.overflow = 'hidden'; // Prevent scrolling
         } else if (e.type === 'touchend' || e.type === "mouseup") {
             isDrawing = false;
+            ctx.beginPath(); // Begin a new path after the stroke
+            document.body.style.overflow = ''; // Re-enable scrolling
         } else if (e.type === 'touchmove' || e.type === "mousemove") {
             if (isDrawing) {
                 onPaint(mouse);
@@ -248,39 +254,34 @@ document.addEventListener('DOMContentLoaded', function() {
             e.preventDefault();
         }
     };
-// Fonction pour sauvegarder les données du canvas lors du mouvement ou de la levée du curseur/toucher
-function saveCanvasDataOnMove() {
-    // Sauvegarder les données du canvas dans le rapport
-    saveCanvasDataToReport();
-}
 
-// Ajouter les gestionnaires d'événement pour sauvegarder les données du canvas lors du mouvement ou de la levée du curseur/toucher
-canvas.addEventListener('mouseup', saveCanvasDataOnMove);
-canvas.addEventListener('touchend', saveCanvasDataOnMove);
-canvas.addEventListener('mousemove', saveCanvasDataOnMove);
-canvas.addEventListener('touchmove', saveCanvasDataOnMove);
+    function saveCanvasDataOnMove() {
+        saveCanvasDataToReport();
+    }
 
-    canvas.addEventListener('mousedown', updateMouse );
-    canvas.addEventListener('mousemove', updateMouse );
-    canvas.addEventListener('mouseup', updateMouse );
-    canvas.addEventListener('touchstart', updateMouse );
-    canvas.addEventListener('touchmove', updateMouse );
-    canvas.addEventListener('touchend', updateMouse );
+    function saveCanvasDataToReport() {
+        var canvas = document.getElementById('canvas');
+        var canvasData = canvas.toDataURL();
+        localStorage.setItem('canvasImage', canvasData);
+    }
+
+    // Ajouter les gestionnaires d'événement pour sauvegarder les données du canvas lors du mouvement ou de la levée du curseur/toucher
 
 
-canvas.addEventListener('touchend', saveCanvasDataOnMove);
+    canvas.addEventListener('mousedown', updateMouse);
+    canvas.addEventListener('mousemove', updateMouse);
+    canvas.addEventListener('mouseup', updateMouse);
+    canvas.addEventListener('touchstart', updateMouse);
+    canvas.addEventListener('touchmove', updateMouse);
+    canvas.addEventListener('touchend', updateMouse);
 
+    canvas.addEventListener('mouseup', saveCanvasDataOnMove);
+    canvas.addEventListener('touchend', saveCanvasDataOnMove);
+    canvas.addEventListener('mousemove', saveCanvasDataOnMove);
+    canvas.addEventListener('touchmove', saveCanvasDataOnMove);
 
-function saveCanvasDataOnMove() {
+ 
 
-    saveCanvasDataToReport();
-}
-
-
-canvas.addEventListener('mouseup', saveCanvasDataOnMove);
-canvas.addEventListener('touchend', saveCanvasDataOnMove);
-canvas.addEventListener('mousemove', saveCanvasDataOnMove);
-canvas.addEventListener('touchmove', saveCanvasDataOnMove);
 
 
     // Images clothes
