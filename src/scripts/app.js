@@ -264,6 +264,12 @@ document.addEventListener('DOMContentLoaded', function() {
         var canvasData = canvas.toDataURL();
         localStorage.setItem('canvasImage', canvasData);
     }
+    canvas.addEventListener('mouseup', saveCanvasDataOnMove);
+    canvas.addEventListener('touchend', saveCanvasDataOnMove);
+    canvas.addEventListener('mousemove', saveCanvasDataOnMove);
+    canvas.addEventListener('touchmove', saveCanvasDataOnMove);
+
+ 
 
     // Ajouter les gestionnaires d'événement pour sauvegarder les données du canvas lors du mouvement ou de la levée du curseur/toucher
 
@@ -275,12 +281,6 @@ document.addEventListener('DOMContentLoaded', function() {
     canvas.addEventListener('touchmove', updateMouse);
     canvas.addEventListener('touchend', updateMouse);
 
-    canvas.addEventListener('mouseup', saveCanvasDataOnMove);
-    canvas.addEventListener('touchend', saveCanvasDataOnMove);
-    canvas.addEventListener('mousemove', saveCanvasDataOnMove);
-    canvas.addEventListener('touchmove', saveCanvasDataOnMove);
-
- 
 
 
 
