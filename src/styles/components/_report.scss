@@ -343,6 +343,7 @@
 /* HEAD */
 
 .section4-clothes {
+  padding: 20px;
   & .grid__item--body {
     position: relative;
   }
@@ -564,8 +565,3 @@ margin: 0 auto;
 }
 
 
-
-.clothes__button {
-  padding-bottom: 20px;
-  padding-right: 20px;
-}
