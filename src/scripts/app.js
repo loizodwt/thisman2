@@ -3,34 +3,33 @@
 document.addEventListener('DOMContentLoaded', function() {
 
     
-    // Récupérer toutes les sections du rapport
+
     var sections = document.querySelectorAll(".report-section");
 
-    // Cacher toutes les sections sauf la première
+
     for (var i = 1; i < sections.length; i++) {
         sections[i].style.display = "none";
     }
 
-    // Récupérer les boutons "Next"
+   
     var nextButtons = document.querySelectorAll(".thisman__button--next");
 
-    // Ajouter un gestionnaire d'événement à chaque bouton "Next"
     nextButtons.forEach(function(button, index) {
         button.addEventListener("click", function() {
-            // Récupérer le texte du rapport et le sauvegarder dans le stockage local
+    
             var reportText = document.getElementById('report-text').value;
             localStorage.setItem('reportText', reportText);
 
-            // Récupérer les données du canvas et les sauvegarder dans le stockage local
+
             var canvas = document.getElementById('canvas');
             var canvasData = canvas.toDataURL();
             localStorage.setItem('canvasImage', canvasData);
 
-            // Créer une image combinée et la sauvegarder dans le stockage local
+   
             var combinedImage = createCombinedImage();
             localStorage.setItem('combinedImage', combinedImage);
 
-            // Afficher les données sauvegardées dans la section de récapitulatif
+       
             var recapSection = document.querySelector(".section_5_recap");
             if (recapSection) {
                 recapSection.querySelector('.recap-image--testimony .content').textContent = reportText;
@@ -40,9 +39,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 recapSection.querySelector('.recap-image--portrait .content').innerHTML = '';
                 recapSection.querySelector('.recap-image--portrait .content').appendChild(img1);
 
-                // Créer une grille pour les images de vêtements dans la section de récapitulatif
-                var recapImages = recapSection.querySelector('.recap-image--appearance .content');
-                recapImages.innerHTML = ''; // Clear the content
+    
+                recapImages.innerHTML = '';
                 
                 var images = createGridImages();
                 images.forEach(image => {
@@ -50,7 +48,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 });
             }
 
-            // Passer à la prochaine section
+            // prochaine section
             sections[index].style.display = "none"; 
             if (index + 1 < sections.length) {
                 sections[index + 1].style.display = "block"; 
@@ -77,9 +75,9 @@ document.addEventListener('DOMContentLoaded', function() {
             recapSection.querySelector('.recap-image--portrait .content').appendChild(img);
         }
 
-        // Créer une grille pour les images de vêtements dans la section de récapitulatif
+
         var recapImages = recapSection.querySelector('.recap-image--appearance .content');
-        recapImages.innerHTML = ''; // Clear the content
+        recapImages.innerHTML = '';
         
         var images = createGridImages();
         images.forEach(image => {
@@ -223,12 +221,12 @@ const mouse = { x: 0, y: 0 };
 
 const updateMouse = (e) => {
     const isTouched = e.changedTouches !== undefined;
-    const isMobile = window.innerWidth < 768; // Check if the device is mobile
+    const isMobile = window.innerWidth < 768;
 
-    if (isTouched || isMobile) { // Disable scrolling on touch or mobile devices
+    if (isTouched || isMobile) { ///scroll enlevé resp
         mouse.x = e.changedTouches[0].pageX - canvas.offsetLeft;
         mouse.y = e.changedTouches[0].pageY - canvas.offsetTop;
-        document.body.style.overflow = 'hidden'; // Prevent scrolling
+        document.body.style.overflow = 'hidden'; 
     } else {
         mouse.x = e.pageX - canvas.offsetLeft;
         mouse.y = e.pageY - canvas.offsetTop;
@@ -240,8 +238,8 @@ const updateMouse = (e) => {
         ctx.moveTo(mouse.x, mouse.y);
     } else if (e.type === 'touchend' || e.type === "mouseup") {
         isDrawing = false;
-        ctx.beginPath(); // Begin a new path after the stroke
-        document.body.style.overflow = ''; // Re-enable scrolling
+        ctx.beginPath();
+        document.body.style.overflow = ''; 
     } else if (e.type === 'touchmove' || e.type === "mousemove") {
         if (isDrawing) {
             onPaint(mouse);
@@ -268,7 +266,7 @@ function saveCanvasDataToReport() {
     localStorage.setItem('canvasImage', canvasData);
 }
 
-// Ajouter les gestionnaires d'événement pour sauvegarder les données du canvas lors du mouvement ou de la levée du curseur/toucher
+
 canvas.addEventListener('mousedown', updateMouse);
 canvas.addEventListener('mousemove', updateMouse);
 canvas.addEventListener('mouseup', updateMouse);
@@ -341,8 +339,35 @@ canvas.addEventListener('touchend', updateMouse);
 
 
 
+
+
+
+
+////submit button
+
+
+const sendButton = document.querySelector('.thisman__button');
+
+
+    sendButton.addEventListener('click', function(event) {
+        event.preventDefault(); 
+ 
+        const form = document.querySelector('.contact-form');
+        const formFields = form.querySelectorAll('.contact-form__input');
+
+        formFields.forEach(function(field) {
+            field.value = '';
+        });
+    });
+
+
+
     
 });
+
+
+
+
 
 //deroulant
 
@@ -365,4 +390,5 @@ dropdown.addEventListener('change', updateContentVisibility);
 
 
 updateContentVisibility();
+
 
