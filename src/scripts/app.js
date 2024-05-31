@@ -62,6 +62,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Récupérer les données sauvegardées dans le stockage local et les afficher dans la section de récapitulatif
     var recapSection = document.querySelector(".section_5_recap");
+
+
     if (recapSection) {
         var savedReportText = localStorage.getItem('reportText');
         if (savedReportText) {
@@ -246,6 +248,17 @@ document.addEventListener('DOMContentLoaded', function() {
             e.preventDefault();
         }
     };
+// Fonction pour sauvegarder les données du canvas lors du mouvement ou de la levée du curseur/toucher
+function saveCanvasDataOnMove() {
+    // Sauvegarder les données du canvas dans le rapport
+    saveCanvasDataToReport();
+}
+
+// Ajouter les gestionnaires d'événement pour sauvegarder les données du canvas lors du mouvement ou de la levée du curseur/toucher
+canvas.addEventListener('mouseup', saveCanvasDataOnMove);
+canvas.addEventListener('touchend', saveCanvasDataOnMove);
+canvas.addEventListener('mousemove', saveCanvasDataOnMove);
+canvas.addEventListener('touchmove', saveCanvasDataOnMove);
 
     canvas.addEventListener('mousedown', updateMouse );
     canvas.addEventListener('mousemove', updateMouse );
@@ -254,7 +267,21 @@ document.addEventListener('DOMContentLoaded', function() {
     canvas.addEventListener('touchmove', updateMouse );
     canvas.addEventListener('touchend', updateMouse );
 
-   
+
+canvas.addEventListener('touchend', saveCanvasDataOnMove);
+
+
+function saveCanvasDataOnMove() {
+
+    saveCanvasDataToReport();
+}
+
+
+canvas.addEventListener('mouseup', saveCanvasDataOnMove);
+canvas.addEventListener('touchend', saveCanvasDataOnMove);
+canvas.addEventListener('mousemove', saveCanvasDataOnMove);
+canvas.addEventListener('touchmove', saveCanvasDataOnMove);
+
 
     // Images clothes
     const arrowLeftButtons = document.querySelectorAll('.grid__arrow--left');
