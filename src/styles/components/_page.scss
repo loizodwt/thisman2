@@ -44,7 +44,8 @@ body {
   &-end__paragraph  {
     font-size: 16px;
     margin-bottom: 1rem;
-    max-width: 700px;
+    max-width: 900px;
+    
   }
 
   &-paragraph--large {
@@ -159,7 +160,7 @@ body {
     .section1 {
       display: grid;
       grid-template-columns: 60% 40%; 
-      gap: 20px; 
+      column-gap: 20px; 
     }
   
     .section1-content {
@@ -170,7 +171,7 @@ body {
     .section1-second {
       grid-column: 1 / 2; 
       grid-row: 2 / 2; 
-      margin-top: -100px; 
+      margin-top: 0px; 
     }
   
     .section1__right {
@@ -189,11 +190,11 @@ body {
   
       &-paragraph,
       &-paragraph2 {
-        font-size: 20px;
+        font-size: 27px;
       }
   
       &-end__paragraph {
-        font-size: 20px;
+        font-size: 27px;
       }
     }
   }
