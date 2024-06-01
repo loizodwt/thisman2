@@ -2,6 +2,16 @@
 
 document.addEventListener('DOMContentLoaded', function() {
 
+        // send button contactus
+        var sendButton = document.querySelector('.contact-form__button.thisman__button');
+        var form = document.querySelector('.contact-form');
+    
+        if (sendButton && form) {
+            sendButton.addEventListener('click', function(event) {
+                event.preventDefault(); 
+                form.reset(); 
+            });
+        }
     
 
     var sections = document.querySelectorAll(".report-section");
@@ -251,28 +261,28 @@ const updateMouse = (e) => {
     }
 };
 
-canvas.addEventListener('mouseup', saveCanvasDataOnMove);
-canvas.addEventListener('touchend', saveCanvasDataOnMove);
-canvas.addEventListener('mousemove', saveCanvasDataOnMove);
-canvas.addEventListener('touchmove', saveCanvasDataOnMove);
+        canvas.addEventListener('mouseup', saveCanvasDataOnMove);
+        canvas.addEventListener('touchend', saveCanvasDataOnMove);
+        canvas.addEventListener('mousemove', saveCanvasDataOnMove);
+        canvas.addEventListener('touchmove', saveCanvasDataOnMove);
 
-function saveCanvasDataOnMove() {
-    saveCanvasDataToReport();
-}
+        function saveCanvasDataOnMove() {
+            saveCanvasDataToReport();
+        }
 
-function saveCanvasDataToReport() {
-    var canvas = document.getElementById('canvas');
-    var canvasData = canvas.toDataURL();
-    localStorage.setItem('canvasImage', canvasData);
-}
+        function saveCanvasDataToReport() {
+            var canvas = document.getElementById('canvas');
+            var canvasData = canvas.toDataURL();
+            localStorage.setItem('canvasImage', canvasData);
+        }
 
 
-canvas.addEventListener('mousedown', updateMouse);
-canvas.addEventListener('mousemove', updateMouse);
-canvas.addEventListener('mouseup', updateMouse);
-canvas.addEventListener('touchstart', updateMouse);
-canvas.addEventListener('touchmove', updateMouse);
-canvas.addEventListener('touchend', updateMouse);
+        canvas.addEventListener('mousedown', updateMouse);
+        canvas.addEventListener('mousemove', updateMouse);
+        canvas.addEventListener('mouseup', updateMouse);
+        canvas.addEventListener('touchstart', updateMouse);
+        canvas.addEventListener('touchmove', updateMouse);
+        canvas.addEventListener('touchend', updateMouse);
 
 
 
@@ -337,33 +347,13 @@ canvas.addEventListener('touchend', updateMouse);
 
 
 
-
-
-
-
-
-
-////submit button
-
-
-const sendButton = document.querySelector('.thisman__button');
-
-
-    sendButton.addEventListener('click', function(event) {
-        event.preventDefault(); 
- 
-        const form = document.querySelector('.contact-form');
-        const formFields = form.querySelectorAll('.contact-form__input');
-
-        formFields.forEach(function(field) {
-            field.value = '';
-        });
-    });
-
-
-
     
 });
+
+
+
+
+
 
 
 
