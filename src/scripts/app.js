@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
  // send button contactus
 
-    if (window.location.pathname === "/about_us.html") {
+    if (window.location.pathname.includes("/about_us.html")) {
 
   
             var sendButton = document.querySelector('.contact-form__button.thisman__button');
@@ -22,8 +22,8 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
 
+    if (window.location.pathname.includes("/report.html"))  {
 
-    if (window.location.pathname === "/report.html") {
 
             var sections = document.querySelectorAll(".report-section");
 
@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', function() {
             nextButtons.forEach(function(button, index) {
                 button.addEventListener("click", function() {
             
-                    var reportText = document.getElementById('report-text').value;
+                    var reportText = document.getElementById('report-text')?.value;
                     localStorage.setItem('reportText', reportText);
 
 
@@ -64,9 +64,13 @@ document.addEventListener('DOMContentLoaded', function() {
                         recapImages.innerHTML = '';
                         
                         var images = createGridImages();
-                        images.forEach(image => {
-                            recapImages.appendChild(image);
-                        });
+                        if (recapImages) {
+                            images.forEach(image => {
+                                recapImages.appendChild(image);
+                            });
+                        }
+                        
+                        
                     }
 
                     // prochaine section
@@ -359,7 +363,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     }
     
-});
 
 
 
@@ -368,28 +371,32 @@ document.addEventListener('DOMContentLoaded', function() {
 
 //deroulant
 
-if (window.location.pathname === "/othercontributions.html") {
+if (window.location.pathname.includes ("/othercontributions.html"))  {
 
 
-        const dropdown = document.querySelector('.section1-contribution__dropdown-select');
-        const contents = document.querySelectorAll('.section1-contribution__content');
-
+    const dropdown = document.querySelector('.section1-contribution__dropdown-select');
+    const contents = document.querySelectorAll('.section1-contribution__content');
+    
+    if (contents.length > 0 && dropdown) {
         function updateContentVisibility() {
-        const selectedValue = dropdown.value;
-
-        contents.forEach(content => {
-            if (content.classList.contains(`section1-contribution__content--${selectedValue}`)) {
-            content.style.display = 'block';
-            } else {
-            content.style.display = 'none';
-            }
-        });
+            const selectedValue = dropdown.value;
+    
+            contents.forEach(content => {
+                if (content.classList.contains(`section1-contribution__content--${selectedValue}`)) {
+                    content.style.display = 'block';
+                } else {
+                    content.style.display = 'none';
+                }
+            });
         }
-
+    
         dropdown.addEventListener('change', updateContentVisibility);
-
-
+    
         updateContentVisibility();
-
+    } else {
+        console.error("Aucun élément????");
+    }
+    
 
 }
+});
