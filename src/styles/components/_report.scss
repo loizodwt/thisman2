@@ -382,6 +382,9 @@
     left: 50%;
     transform: translateX(-50%);
     z-index: 2;
+    @media screen and (max-width: 768px) {
+      top: 115px;
+    }
   }
 
   #tm_bottom {
@@ -396,11 +399,11 @@
 
   #tm_shoes {
     display: block;
-    width: 100px;
-    height: 100px;
+    width: 150px;
+    height: 150px;
     position: absolute;
-    top: 550px;
-    left: 50%;
+    top: 520px;
+    left: 51%;
     transform: translateX(-50%);
     z-index: 1;
   }
@@ -410,10 +413,13 @@
     width: 250px;
     height: 250px;
     position: absolute;
-    top: 120px;
-    left: 50%;
+    top: 45px;
+    left: 51%;
     transform: translateX(-50%);
     z-index: 4;
+    @media screen and (max-width: 768px) {
+      top: 35px;
+    }
   }
 }
 
