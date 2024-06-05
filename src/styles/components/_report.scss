@@ -1,98 +1,95 @@
-.section1-report__text {
-  margin-top: 10px;
-  background-color: #F5F5F5;
-  max-height: 400px; 
-  overflow-y: auto; 
-}
 
-.report__title {
-  background-color: #E9F1FC;
-  padding: 10px;
-  border: 1px solid black;
-  margin-bottom: 30px;
-}
 
-.section1-report__content {
-  padding: 20px;
-  border-radius: 5px;
-  background-color: #F5F5F5;
-  display: flex;
-  flex-direction: column;
-  @media screen and (max-width: 768px) {
+
+
+
+.section1-report {
+  &__text {
+    margin-top: 10px;
+    background-color: #F5F5F5;
+    max-height: 400px; 
+    overflow-y: auto; 
+  }
+
+  &__content {
+    padding: 20px;
+    border-radius: 5px;
+    background-color: #F5F5F5;
+    display: flex;
+    flex-direction: column;
+
+    @media screen and (max-width: 768px) {
       padding: 5px;
+    }
+  }
+
+  &__text-area {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+
+  &__textarea {
+    width: 500px;
+    height: 400px; 
+    resize: vertical;
+
+    &::placeholder {
+      color: #999;
+      font-family: 'Times New Roman', Times, serif;
+      padding: 20px;
+      font-size: 16px;
+    }
+
+    &:focus {
+      padding: 20px; 
+    }
+    &:active {
+      padding: 20px; 
+    }
+
+    @media screen and (max-width: 768px) {
+      width: 100%;
+    }
+  }
+
+  &__paragraph {
+    padding: 10px;
   }
 }
 
-.section1-report__text-area {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 20px;
+.report {
+  &__title {
+    background-color: #E9F1FC;
+    padding: 10px;
+    border: 1px solid black;
+    margin-bottom: 30px;
+  }
 
+  &__buttons {
+    a.thisman__button {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    button.thisman__button--next {
+      cursor: pointer;
+    }
+  }
 }
 
-.section1-report__textarea {
-  width: 500px;
-  height: 400px; 
-  resize: vertical;
-  
+.section1 {
+  &-report {
+    background-color: #F5F5F5;
+    padding: 20px;
+  }
 }
-
-
-.section1-report__paragraph {
-  padding: 10px;
-}
-
 
 @media screen and (min-width: 768px) {
   .section1-report__content {
     flex-direction: row;
   }
-
-
-
-  
 }
-
-
-
-@media screen and (max-width: 768px) {
-  .section1-report__textarea {
-    width: 100%;
-  }
-  
-  
-}
-
-
-
-
-.section1-report__textarea::placeholder {
-  color: #999; /* Couleur du texte */
-  font-family: 'Times New Roman', Times, serif;
-  padding: 20px;
-  font-size: 16px;
-}
-
-
-.section1-report__textarea:focus {
-  padding: 20px; 
-}
-
-
-
-
-
-.section1 {
-
-    &-report {
-      background-color: #F5F5F5;
-      padding: 20px;
-      
-    }
-
-}
-
-
 
 
 
@@ -130,7 +127,7 @@
   &.paint {
     display: grid;
     grid-template-columns: 1fr;
-    column-gap: 20px; /* Espacement entre les colonnes */
+    column-gap: 20px; 
     background-color: #F5F5F5;
     padding: 20px;
 
@@ -194,26 +191,26 @@
 
 }
 
-/* Style du color picker */
+
 .controls__color-picker {
-  -webkit-appearance: none; /* Supprime l'apparence par défaut du color picker */
+  -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-  width: 30px; /* Ajustez la largeur selon vos besoins */
-  height: 30px; /* Ajustez la hauteur selon vos besoins */
-  border: none; /* Supprimez les bordures */
-  border-radius: 50%; /* Rendez-le arrondi pour ressembler à un bouton */
-  cursor: pointer; /* Changez le curseur au survol */
+  width: 30px; 
+  height: 30px;
+  border: none; 
+  border-radius: 50%;
+  cursor: pointer;
 }
 
-/* Style spécifique pour Chrome */
+
 @media screen and (-webkit-min-device-pixel-ratio:0) {
-  /* Sélectionnez le color picker pour Chrome */
+
   .controls__color-picker::-webkit-color-swatch {
-    border: none; /* Supprimez la bordure */
+    border: none; 
     border: solid 1px black;
-    border-radius: 50%; /* Rendez-le arrondi */
-    padding: 0; /* Supprimez le rembourrage */
+    border-radius: 50%;
+    padding: 0; 
   }
 }
 
@@ -346,7 +343,7 @@
 }
 
 
-/* HEAD */
+/* CLOTHES */
 
 .section4-clothes {
   padding: 0px;
