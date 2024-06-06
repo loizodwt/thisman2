@@ -73,7 +73,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         
                     }
 
-               
+                    // prochaine section
                     sections[index].style.display = "none"; 
                     if (index + 1 < sections.length) {
                         sections[index + 1].style.display = "block"; 
