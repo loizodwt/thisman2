@@ -83,7 +83,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 });
             });
 
-            // Récupérer les données sauvegardées dans le stockage local et les afficher dans la section de récapitulatif
+            // Récupérer les données dans le localstorage et afficher dans récap
             var recapSection = document.querySelector(".section_5_recap");
 
 
@@ -137,7 +137,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
 
 
-            // Fonction pour créer une grille d'images de vêtements pour la section de récapitulatif
+    // Fonction pour créer une grille d'images de vêtements pour la section de récapitulatif
         function createGridImages() {
                 const images = [];
                 const bodyParts = ['tm_top', 'tm_bottom', 'tm_shoes', 'tm_accessoiries'];
@@ -242,13 +242,15 @@ document.addEventListener('DOMContentLoaded', function() {
 
         resizeCanvas();
 
+
+
         const mouse = { x: 0, y: 0 };
 
         const updateMouse = (e) => {
             const isTouched = e.changedTouches !== undefined;
             const isMobile = window.innerWidth < 768;
 
-            if (isTouched || isMobile) { ///scroll enlevé resp
+            if (isTouched || isMobile) { 
                 mouse.x = e.changedTouches[0].pageX - canvas.offsetLeft;
                 mouse.y = e.changedTouches[0].pageY - canvas.offsetTop;
                 document.body.style.overflow = 'hidden'; 
@@ -369,34 +371,37 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
-//deroulant
+            //deroulant
 
-if (window.location.pathname.includes ("/othercontributions.html"))  {
+            if (window.location.pathname.includes ("/othercontributions.html"))  {
 
 
-    const dropdown = document.querySelector('.section1-contribution__dropdown-select');
-    const contents = document.querySelectorAll('.section1-contribution__content');
-    
-    if (contents.length > 0 && dropdown) {
-        function updateContentVisibility() {
-            const selectedValue = dropdown.value;
-    
-            contents.forEach(content => {
-                if (content.classList.contains(`section1-contribution__content--${selectedValue}`)) {
-                    content.style.display = 'block';
+                const dropdown = document.querySelector('.section1-contribution__dropdown-select');
+                const contents = document.querySelectorAll('.section1-contribution__content');
+                
+                if (contents.length > 0 && dropdown) {
+                    function updateContentVisibility() {
+                        const selectedValue = dropdown.value;
+                
+                        contents.forEach(content => {
+                            if (content.classList.contains(`section1-contribution__content--${selectedValue}`)) {
+                                content.style.display = 'block';
+                            } else {
+                                content.style.display = 'none';
+                            }
+                        });
+                    }
+                
+                    dropdown.addEventListener('change', updateContentVisibility);
+                
+                    updateContentVisibility();
                 } else {
-                    content.style.display = 'none';
+                    console.error("Aucun élément????");
                 }
-            });
-        }
-    
-        dropdown.addEventListener('change', updateContentVisibility);
-    
-        updateContentVisibility();
-    } else {
-        console.error("Aucun élément????");
-    }
-    
+                
 
-}
+            }
+
+
+            
 });
